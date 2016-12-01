@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
-var bcrypt = require('bcrypt')
+// var bcrypt = require('bcrypt')
+var bcrypt = require('bcrypt-nodejs')
 
 var userSchema = new mongoose.Schema({
   local: {
@@ -30,10 +31,12 @@ var userSchema = new mongoose.Schema({
 userSchema.pre('save', function (next) {
   // this refers to the user-instance that is created from the model.
   var user = this
-  bcrypt.genSalt(function (err, salt) {
+  bcrypt.genSalt(5,function (err, salt) {
+  // bcrypt.genSalt(function (err, salt) {
     if (err) return next(err)
 
-    bcrypt.hash(user.local.password, salt, function (err, hash) {
+  bcrypt.hash(user.local.password, salt, null,function (err, hash) {
+    // bcrypt.hash(user.local.password, salt, function (err, hash) {
       if (err) return next(err)
 
       user.local.password = hash

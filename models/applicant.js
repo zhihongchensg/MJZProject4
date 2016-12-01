@@ -20,7 +20,7 @@ var applicantSchema = new mongoose.Schema({
 							required: true
 						},
             yearBorn: {
-              type: integer,
+              type: Number,
               required: [true, 'Must be a YYYY!']
             },
             gender: {type: String, enum: ["Male", "Female"]},
