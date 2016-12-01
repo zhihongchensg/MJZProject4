@@ -24,7 +24,7 @@ var applicantSchema = new mongoose.Schema({
               required: [true, 'Must be a YYYY!']
             },
             gender: {type: String, enum: ["Male", "Female"]},
-            expectedPay: { type: Currency},
+            expectedPay: { type: Number},
             skills: {
 							type: String,
 							required: true

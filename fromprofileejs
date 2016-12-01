@@ -1,0 +1,17 @@
+<div class="row">
+    <h3><%=user.local.name%>'s Joblists: </h3>
+    <% joblists.forEach(function(joblist){ %>
+      <h4 class="text-muted"><%= joblist.title%>
+      <a href="/joblists/<%=joblist.id%>">View</a>
+      </h4>
+    <% })%>
+</div>
+<div class="row">
+    <h3><%=user.local.name%>'s Applicants: </h3>
+    <% joblists.forEach(function(joblist){ %>
+      <h4 class="text-muted"><% if (joblist.applicant_id) { %>
+                <li><%= joblist.applicant_id.name%></li>
+              <% } %>
+      </h4>
+    <% })%>
+</div>
