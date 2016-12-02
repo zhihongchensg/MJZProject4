@@ -53,7 +53,7 @@ app.use(express.static(__dirname + '/public'))
 
 var usersRoutes = require('./routes/users')
 // var ajaxRoutes = require('./routes/places_api')
-
+var apijoblistsRoutes = require('./routes/joblists_api')
 
 app.use(bodyParser.json()) // to parse ajax json req only
 app.use(bodyParser.urlencoded({
@@ -71,7 +71,7 @@ app.use(function (req, res, next) {
 // app.use('/api/places', ajaxRoutes) // only handle ajax request
 app.use('/', usersRoutes)
 // only handle ajax request
-
+app.use('/api', apijoblistsRoutes)
 
 app.listen(process.env.PORT || 3000)
 console.log('Server started')
