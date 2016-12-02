@@ -60,10 +60,6 @@
     <tbody>
       <% joblists.forEach(function(joblist) { if (joblist.expired == true) {%>
       <tr>
-<<<<<<< HEAD
-=======
-
->>>>>>> a9d0ea513f703efa50ea154915ea207dba1ea2ef
         <td>
          <ul> <a href="# %>"> <%= joblist.title %>  </a><br>
           <%= joblist.description %> </ul>
@@ -78,7 +74,6 @@
     </tbody>
   </table>
   </div>
-<<<<<<< HEAD
 
  <div class="container">
   <table class="table table-hover">
@@ -94,24 +89,6 @@
     <tbody>
       <% joblists.forEach(function(joblist) { if (joblist.applicant_id) {%>
       <tr>
-=======
-
- <div class="container">
-  <table class="table table-hover">
-    <h4><%=user.local.name%>'s applicants</h4>
-    <thead>
-      <tr>
-        <th>NAME</th>
-        <th>CONTACT</th>
-        <th>EDUCATION</th>
-        <th>EXPECTED PAY</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% joblists.forEach(function(joblist) { if (joblist.applicant_id) {%>
-      <tr>
-
->>>>>>> a9d0ea513f703efa50ea154915ea207dba1ea2ef
         <td>
          <ul> <a href="# %>"> <%= joblist.applicant_id.name %>  </a><br>
           <%= joblist.applicant_id.email %> </ul>
