@@ -37,6 +37,7 @@
        <td> <input type ="submit" title = <%=joblist._id%> value = "Applicants" id="viewapplicants" class="btn btn-primary navigation"> </td>
      </tr>
      <% }}) %>
+
    </tbody>
  </table>
  </div>
@@ -59,7 +60,6 @@
     <tbody>
       <% joblists.forEach(function(joblist) { if (joblist.expired == true) {%>
       <tr>
-
         <td>
          <ul> <a href="# %>"> <%= joblist.title %>  </a><br>
           <%= joblist.description %> </ul>
@@ -89,7 +89,6 @@
     <tbody>
       <% joblists.forEach(function(joblist) { if (joblist.applicant_id) {%>
       <tr>
-
         <td>
          <ul> <a href="# %>"> <%= joblist.applicant_id.name %>  </a><br>
           <%= joblist.applicant_id.email %> </ul>

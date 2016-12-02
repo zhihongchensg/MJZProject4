@@ -1,14 +1,13 @@
 // Client Side Ajax Script
 $(document).ready(function ($) {
-  $('.closed').on('click', function(e){
+  $('.closed').on('click', (function(e){
     e.preventDefault()
     alert('Button closed clicked')
     console.log($(this).data("job-id"));
     var data = $(this).data("job-id");
-
     $.ajax({
-				type: 'PUT',
-				data: data,
+                type: 'PUT',
+                data: data,
         url: "/api/joblists/" + data + "/edit",
         success: function(data) {
           console.log(data)
@@ -25,14 +24,12 @@ $(document).ready(function ($) {
           newExpiredJob.appendChild(newExpiredJobDescription)
           // newExpiredJob.appendChild(newExpiredJobDescription)
           console.log(newExpiredJob)
-
           var ExpiredJobList = document.querySelectorAll('tbody')[1]
           ExpiredJobList.appendChild(newExpiredJob)
           console.log(ExpiredJobList)
-
           // console.log('success');
           // console.log(JSON.stringify(data));
         }
     });
   })
-})
+)})
