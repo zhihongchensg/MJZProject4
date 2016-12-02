@@ -13,7 +13,7 @@ var joblistSchema = new mongoose.Schema({
 						},
 
 						expired: {
-							type: boolean,
+							type: Boolean,
 						  default: false
 						},
 
@@ -23,7 +23,7 @@ var joblistSchema = new mongoose.Schema({
 						},
 
 						filled: {
-							type: boolean,
+							type: Boolean,
 						  default: false
 						},
 
