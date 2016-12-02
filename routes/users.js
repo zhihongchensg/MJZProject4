@@ -1,11 +1,10 @@
-//users are the recruiters in this model
-
 var express = require('express')
 var router = express.Router()
 var passport = require('passport')
 
 var User = require('../models/user')
 var Joblist = require('../models/joblist')
+var Applicant = require('../models/applicant')
 
 var userController = require('../controllers/userController')
 
@@ -52,21 +51,16 @@ router.post('/signup', passport.authenticate('local-signup', {
 }))
 
 router.get('/profile', isLoggedIn, function (req, res) {
-  // Joblist.find({
-  //   user_id: req.user.id
-  // })
-  //   .populate('applicant_id')
-  //   .exec(function (err, joblists) {
-  //     res.render('users/profile', {
-  //       user: req.user,
-  //       joblists: joblists
-  //     })
-  //   })
-  Joblist.find({expired: false}, function(err,joblist) {
-    res.render('users/profile', {
-      joblist:joblist
-    })
+  Joblist.find({
+    user_id: req.user.id
   })
+    .populate('applicant_id')
+    .exec(function (err, joblists) {
+      res.render('users/profile', {
+        user: req.user,
+        joblists: joblists
+      })
+    })
 })
 router.get('/logout', isLoggedIn, function (req, res) {
   req.logout()
