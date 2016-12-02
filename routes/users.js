@@ -63,7 +63,7 @@ router.get('/profile', isLoggedIn, function (req, res) {
   Joblist.find({
     user_id: req.user.id
   })
-    .populate('applicant_id')
+    .populate('applicants')
     .exec(function (err, joblists) {
       res.render('users/profile', {
         user: req.user,
