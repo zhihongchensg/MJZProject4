@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var Applicant = require("./applicant");
 
 var joblistSchema = new mongoose.Schema({
 
@@ -32,10 +33,15 @@ var joblistSchema = new mongoose.Schema({
 							ref: "User"
 						},
 
-						applicant_id: {
-							type: mongoose.Schema.Types.ObjectId,
-							ref: "Applicant"
-						}
+						applicants: [
+							{
+								type: mongoose.Schema.Types.ObjectId,
+								ref: 'Applicant'
+							}
+						]
+
+						// applicant: [Applicant]
+
 					});
 
 var Joblist = mongoose.model("Joblist", joblistSchema);

@@ -41,7 +41,6 @@ var applicantSchema = new mongoose.Schema({
             bioText: {
               type: String,
               required: true,
-
             }
 					});
 

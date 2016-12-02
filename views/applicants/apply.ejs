@@ -7,7 +7,7 @@
 
 <%# <h1>Applicants Apply Page</h1>%>
 <div class="container">
-<form action="/applicants/applicationForms" method="POST" class="form-action">
+<form action="/applicants/applicationForms/<%=foundJoblist.id%>" method="POST" class="form-action">
   <div class="form-group" class="text-center">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="applicant-name" name="applicant[name]" placeholder="Jane Doe">

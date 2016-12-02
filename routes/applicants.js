@@ -15,11 +15,14 @@ var Joblist = require('../models/joblist')
 //   })
 // })
 
-router.get('/applicationForms', function(req, res) {
-  res.render('applicants/apply')
+router.get('/applicationForms/:id', function(req, res) {
+  Joblist.findById(req.params.id, function(err, foundJoblist){
+    res.render('applicants/apply', {foundJoblist:foundJoblist})
+
+  })
 })
 
-router.post('/applicationForms', function(req, res) {
+router.post('/applicationForms/:id', function(req, res) {
   // console.log('successful posting')
   var newApplicant = new Applicant({
     name: req.body.applicant.name,
@@ -35,6 +38,11 @@ router.post('/applicationForms', function(req, res) {
   })
   newApplicant.save(function(err) {
     if (err) throw new Error(err)
+    Joblist.findById(req.params.id, function(err, foundJoblist){
+      console.log(foundJoblist.applicants)
+      foundJoblist.applicants.push(newApplicant._id)
+      foundJoblist.save()
+    })
   })
   res.redirect('/')
 })
