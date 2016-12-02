@@ -1,9 +1,12 @@
+// users are the recruiters
+
 var express = require('express')
 var router = express.Router()
 var passport = require('passport')
 
 var User = require('../models/user')
-
+var Joblist = require('../models/joblist')
+var Applicant = require('../models/applicant')
 var userController = require('../controllers/userController')
 
 // route middleware to make sure a user is logged in
@@ -17,14 +20,21 @@ function isLoggedIn (req, res, next) {
 }
 
 function isNotLoggedIn (req, res, next) {
-  if (! req.isAuthenticated())
+  if (!req.isAuthenticated())
     return next()
   // if they aren't redirect them to the home page
   res.redirect('/profile')
 }
 
 router.get('/', function (req, res) {
-  res.render('applicants/index'); // load the index.ejs file
+  // res.render('applicants/index'); // load the index.ejs file
+  Joblist.find({
+    expired: false
+  }, function (err, joblist) {
+    res.render('applicants/index', {
+      joblist: joblist
+    })
+  })
 })
 
 // login routes
@@ -49,12 +59,52 @@ router.post('/signup', passport.authenticate('local-signup', {
 }))
 
 router.get('/profile', isLoggedIn, function (req, res) {
-  res.render('users/profile');
+  // Joblist.find({
+  //   user_id: req.user.id
+  // })
+  //   .populate('applicant_id')
+  //   .exec(function (err, joblists) {
+  //     res.render('users/profile', {
+  //       user: req.user,
+  //       joblists: joblists
+  //     })
+  //   })
+  Joblist.find({
+    expired: false
+  }, function (err, joblist) {
+    res.render('users/profile', {
+      joblist: joblist
+    })
+  })
 })
-
 router.get('/logout', isLoggedIn, function (req, res) {
   req.logout()
   res.redirect('/')
+})
+
+router.get('/recruiterProfile', isLoggedIn, function (req, res) {
+  res.render('users/recruiterProfile')
+})
+
+// =============all below is for operations ==========================
+
+// Getting a new joblist form
+router.get('/newJoblist', isLoggedIn, function (req, res) {
+  res.render('joblists/new')
+})
+// my adding of a joblist from joblist form
+router.post('/newJoblist', function (req, res) {
+  var newJoblist = new Joblist({
+    title: req.body.joblist.title,
+    description: req.body.joblist.description,
+    user_id: req.user.id
+  })
+
+  newJoblist.save(function (err) {
+    if (err) throw new Error(err)
+  })
+
+  res.redirect('/profile')
 })
 
 module.exports = router
