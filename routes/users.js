@@ -1,11 +1,14 @@
 //users are the recruiters in this model
 
+
 var express = require('express')
 var router = express.Router()
 var passport = require('passport')
 
 var User = require('../models/user')
 var Joblist = require('../models/joblist')
+
+var Applicant = require('../models/applicant')
 
 var userController = require('../controllers/userController')
 
@@ -20,14 +23,21 @@ function isLoggedIn (req, res, next) {
 }
 
 function isNotLoggedIn (req, res, next) {
-  if (! req.isAuthenticated())
+  if (!req.isAuthenticated())
     return next()
   // if they aren't redirect them to the home page
   res.redirect('/profile')
 }
 
 router.get('/', function (req, res) {
-  res.render('applicants/index'); // load the index.ejs file
+  // res.render('applicants/index'); // load the index.ejs file
+  Joblist.find({
+    expired: false
+  }, function (err, joblist) {
+    res.render('applicants/index', {
+      joblist: joblist
+    })
+  })
 })
 
 // login routes
@@ -62,9 +72,15 @@ router.get('/profile', isLoggedIn, function (req, res) {
   //       joblists: joblists
   //     })
   //   })
-  Joblist.find({expired: false}, function(err,joblist) {
+
+  // Joblist.find({expired: false}, function(err,joblist) {
+  //   res.render('users/profile', {
+  //     joblist:joblist
+  Joblist.find({
+    expired: false
+  }, function (err, joblist) {
     res.render('users/profile', {
-      joblist:joblist
+      joblist: joblist
     })
   })
 })
@@ -81,21 +97,21 @@ router.get('/recruiterProfile', isLoggedIn, function (req, res) {
 
 // Getting a new joblist form
 router.get('/newJoblist', isLoggedIn, function (req, res) {
-    res.render('joblists/new')
+  res.render('joblists/new')
 })
 // my adding of a joblist from joblist form
 router.post('/newJoblist', function (req, res) {
-    var newJoblist = new Joblist({
-      title: req.body.joblist.title,
-      description: req.body.joblist.description,
-      user_id: req.user.id,
-    })
+  var newJoblist = new Joblist({
+    title: req.body.joblist.title,
+    description: req.body.joblist.description,
+    user_id: req.user.id
+  })
 
-    newJoblist.save(function(err){
-      if(err) throw new Error(err)
-    })
+  newJoblist.save(function (err) {
+    if (err) throw new Error(err)
+  })
 
-    res.redirect('/profile')
+  res.redirect('/profile')
 })
 
 module.exports = router

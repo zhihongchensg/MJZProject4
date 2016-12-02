@@ -1,0 +1,21 @@
+<h1>Applicants - Job Listings</h1>
+<ul id="all-joblist-boxes">
+  <%
+  joblistArr.forEach(function(joblist) { %>
+      <div class="four columns">
+        <li>
+          <h2> <%= joblist.title %> </h2>
+          <p> <%= joblist.description %> </p>
+          <p> <%= joblist.expired %> </p>
+          <p> <%= joblist.postDate %> </p>
+          <p> <%= joblist.filled %> </p>
+
+        </li>
+           <a href="/joblist/<%= joblist._id %>"> <button class="btn btn-default btn-primary" href="joblist/joblist._id" role="button">Comment</button></a>
+           <button type="submit" class="btn btn-primary">Apply</button>
+      </div>
+    <% })
+  %>
+
+  <button type="submit" class="btn btn-primary">Apply</button>
+</ul>

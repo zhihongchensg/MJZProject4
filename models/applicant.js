@@ -1,4 +1,7 @@
 var mongoose = require("mongoose");
+require('mongoose-money');
+var Schema = mongoose.Schema;
+var Money = require('moneyjs');
 
 var applicantSchema = new mongoose.Schema({
 						name: {
@@ -23,15 +26,22 @@ var applicantSchema = new mongoose.Schema({
               type: Number,
               required: [true, 'Must be a YYYY!']
             },
-            gender: {type: String, enum: ["Male", "Female"]},
+
+            gender: {
+							type: String,
+							enum: ["Male", "Female"]
+						},
+
             expectedPay: { type: Number},
+
             skills: {
 							type: String,
 							required: true
 						},
             bioText: {
               type: String,
-              required: true
+              required: true,
+
             }
 					});
 
