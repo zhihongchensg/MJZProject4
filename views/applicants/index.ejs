@@ -1,9 +1,6 @@
-<ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-left">
   <% if (!user) { %>
+    <h1>Applicants view</h1>
     <li><a href="/login">Recruiter Login</a></li>
-  <% } else { %>
-    <li><a href="/logout">Recruiter Logout</a></li>
   <% } %>
 </ul>
-
-<h1>Applicants' view</h1>

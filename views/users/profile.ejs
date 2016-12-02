@@ -32,8 +32,8 @@
        <td><%= job.expired %></td>
        <td><%= job.postDate %></td>
        <td><%= job.filled %></td>
-       <td><a href="# %>"> Close Job </a><br></td>
-       <td><a href="# %>"> See Applicants </a><br></td>
+       <td> <input type ="submit" title = <%=job._id%> value = "Close Job" id="closejob<%=job._id%>" class="btn btn-info navigation"> </td>
+       <td> <input type ="submit" title = <%=job._id%> value = "Applicants" id="viewapplicants" class="btn btn-primary navigation"> </td>
      </tr>
 
      <% }) %>
