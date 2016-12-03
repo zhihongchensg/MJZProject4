@@ -29,7 +29,9 @@ var applicantSchema = new mongoose.Schema({
 
             gender: {
 							type: String,
-							enum: ["Male", "Female"]
+							required: true,
+							enum: ['Male', 'Female'],
+							default: 'Male'
 						},
 
             expectedPay: { type: Number},

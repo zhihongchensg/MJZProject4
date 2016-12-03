@@ -1,11 +1,6 @@
-<ul class="nav navbar-nav navbar-left">
-  <% if (!user) { %>
-    <h1>Applicants Apply Page</h1>
-    <li><a href="/login">Recruiter Login</a></li>
-  <% } %>
-</ul>
 
-<%# <h1>Applicants Apply Page</h1>%>
+
+<h1>Applicants Apply Page</h1>
 <div class="container">
 <form action="/applicants/applicationForms/<%=foundJoblist.id%>" method="POST" class="form-action">
   <div class="form-group" class="text-center">
@@ -32,15 +27,18 @@
     <label for="yearBorn">Year Born</label>
     <input type="text" class="form-control" id="applicant-yearBorn" name="applicant[yearBorn]" placeholder="YYYY">
   </div>
+
+
+
   <div class="control-group" class="text-center">
     <label class="control-label" for="gender">Gender</label>
     <div class="controls">
         <label class="radio inline" for="gender-0">
-          <input name="gender" id="gender-0" value="Male" checked="checked" type="radio">
+          <input name="applicant[gender]" id="gender-0" value="Male" checked="checked" type="radio">
           Male
         </label>
       <label class="radio inline" for="gender-1">
-        <input name="gender" id="gender-1" value="Female" type="radio">
+        <input name="applicant[gender]" id="gender-1" value="Female" type="radio">
         Female
       </label>
     </div>

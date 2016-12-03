@@ -5,7 +5,7 @@ var router = express.Router()
 var Joblist = require('../models/joblist')
 
 // router.get('/', function (req, res) {
-//   // res.render('applicants/index'); // load the index.ejs file
+  // res.render('applicants/index'); // load the index.ejs file
 //   Joblist.find({
 //     expired: false
 //   }, function (err, joblist) {
@@ -38,8 +38,9 @@ router.post('/applicationForms/:id', function(req, res) {
   })
   newApplicant.save(function(err) {
     if (err) throw new Error(err)
+    // console.log(newApplicant.gender)
     Joblist.findById(req.params.id, function(err, foundJoblist){
-      console.log(foundJoblist.applicants)
+      // console.log(foundJoblist.applicants)
       foundJoblist.applicants.push(newApplicant._id)
       foundJoblist.save()
     })
