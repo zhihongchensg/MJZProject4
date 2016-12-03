@@ -11,24 +11,35 @@ $(document).ready(function ($) {
         url: "/api/joblists/" + data + "/edit",
         success: function(data) {
           console.log(data)
+
+          // ITEM APPENDED TO EXPIRED JOB LIST
           var newExpiredJob = document.createElement('tr')
+
+          // notice that element for job.description was not created.
           var newExpiredJobTitle = document.createElement('td')
-          var newExpiredJobDescription = document.createElement('td')
+          var newExpiredJobExpired = document.createElement('td')
+          var newExpiredJobpostDate = document.createElement('td')
+          var newExpiredJobFilled = document.createElement('td')
           newExpiredJobTitle.innerText = data.title
-          // var newExpiredJobDescription = document.createElement('td')
-          // newExpiredJobDescription = data.description
-          // newExpiredJobDetail.expired = data.expired
-          // newExpiredJobDetail.postDate = data.postDate
-          // newExpiredJobDetail.filled = data.filled
+          newExpiredJobExpired.innerText = 'true'
+          newExpiredJobpostDate.innerText = data.postDate
+          newExpiredJobFilled.innerText = data.filled
           newExpiredJob.appendChild(newExpiredJobTitle)
-          newExpiredJob.appendChild(newExpiredJobDescription)
-          // newExpiredJob.appendChild(newExpiredJobDescription)
+          newExpiredJob.appendChild(newExpiredJobExpired)
+          newExpiredJob.appendChild(newExpiredJobpostDate)
+          newExpiredJob.appendChild(newExpiredJobFilled)
+
           console.log(newExpiredJob)
           var ExpiredJobList = document.querySelectorAll('tbody')[1]
           ExpiredJobList.appendChild(newExpiredJob)
           console.log(ExpiredJobList)
-          // console.log('success');
-          // console.log(JSON.stringify(data));
+
+          // ITEM REMOVED FROM UNEXPIRED joblist
+          var CurrentJoblist = document.querySelectorAll('tbody')[0]
+          console.log(CurrentJoblist)
+          console.log($(data))
+          CurrentJoblist.removeChild($this.data)
+
         }
     });
   })
