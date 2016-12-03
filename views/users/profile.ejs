@@ -11,7 +11,8 @@
         <h1>Profile for <%=user.local.name%></h1>
     </div>
 </div>
-<div class="container">
+<div class = "container">
+<div class="floatLeft">
  <table class="table table-hover">
    <h4><%=user.local.name%>'s unexpired joblists</h4>
    <thead>
@@ -39,10 +40,8 @@
    </tbody>
  </table>
  </div>
- <div class="container">
-   <p> test </p>
- </div>
- <div class="container">
+
+ <div class="floatRight">
   <table class="table table-hover">
     <h4><%=user.local.name%>'s expired joblists</h4>
     <thead>
@@ -70,6 +69,6 @@
     </tbody>
   </table>
   </div>
- 
+</div>
 </body>
 </html>
