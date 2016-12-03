@@ -102,4 +102,11 @@ router.post('/newJoblist', function (req, res) {
   res.redirect('/profile')
 })
 
+// From a joblist, go to its applicants list
+router.get('/:id/applicants', function(req,res){
+	Joblist.findById(req.params.id).populate('applicants').exec(function(err,joblist){
+			res.render("users/applicants", {joblist:joblist});
+	});
+});
+
 module.exports = router
