@@ -1,217 +1,75 @@
 <!doctype html>
-
 <html>
-
 <head>
-
     <style>
-
         /*body        { padding-top:80px; word-wrap:break-word; }*/
-
     </style>
-
 </head>
-
 <body>
-
 <div class="container">
-
     <div class="page-header text-center">
-
         <h1>Profile for <%=user.local.name%></h1>
-
     </div>
-
 </div>
-
-
-
 <div class="container">
-
  <table class="table table-hover">
-
    <h4><%=user.local.name%>'s unexpired joblists</h4>
-
    <thead>
-
      <tr>
-
        <th>TITLE</th>
-
        <th>EXPIRED</th>
-
        <th>POST DATE</th>
-
        <th>FILLED</th>
-
      </tr>
-
    </thead>
-
    <tbody>
-
      <% joblists.forEach(function(joblist) { if (joblist.expired == false) {%>
-
      <tr>
-
        <td>
-
         <ul> <a href="# %>"> <%= joblist.title %>  </a><br>
-
          <%= joblist.description %> </ul>
-
        </td>
-
        <td><%= joblist.expired %></td>
-
-       <td><%= joblist.postDate %></td>
-
+       <td><%= joblist.postDate.toDateString() %></td>
        <td><%= joblist.filled %></td>
-
        <td> <input type ="submit" class = "closed" data-job-id="<%=joblist._id%>"  class="btn btn-info navigation"> </td>
-
-       <td> <input type ="submit" title = <%=joblist._id%> value = "Applicants" id="viewapplicants" class="btn btn-primary navigation"> </td>
-
+       <td> <a href="/<%= joblist._id%>/applicants">Get the applicants.</a> </td>
      </tr>
-
      <% }}) %>
-
-
-
    </tbody>
-
  </table>
-
  </div>
-
-
-
  <div class="container">
-
    <p> test </p>
-
  </div>
-
-
-
  <div class="container">
-
   <table class="table table-hover">
-
     <h4><%=user.local.name%>'s expired joblists</h4>
-
     <thead>
-
       <tr>
-
-        <th>NAME</th>
-
-        <th>CONTACT</th>
-
-        <th>EDUCATION</th>
-
-        <th>EXPECTED PAY</th>
-
+        <th>TITLE</th>
+        <th>EXPIRED</th>
+        <th>POST DATE</th>
+        <th>FILLED</th>
       </tr>
-
     </thead>
-
     <tbody>
-
       <% joblists.forEach(function(joblist) { if (joblist.expired == true) {%>
-
       <tr>
-
-
-
         <td>
-
          <ul> <a href="# %>"> <%= joblist.title %>  </a><br>
-
           <%= joblist.description %> </ul>
-
         </td>
-
         <td><%= joblist.expired %></td>
-
-        <td><%= joblist.postDate %></td>
-
+        <td><%= joblist.postDate.toDateString()%></td>
         <td><%= joblist.filled %></td>
-
         <td> <input type ="submit" title = <%=joblist._id%> value = "Close Job" id="closejob<%=joblist._id%>" class="btn btn-info navigation"> </td>
-
-        <td> <input type ="submit" title = <%=joblist._id%> value = "Applicants" id="viewapplicants" class="btn btn-primary navigation"> </td>
-
+        <td> <a href="/<%= joblist._id%>/applicants">Get the applicants.</a></td>
       </tr>
-
       <% }}) %>
-
     </tbody>
-
   </table>
-
   </div>
-
-
-
- <div class="container">
-
-  <table class="table table-hover">
-
-    <h4><%=user.local.name%>'s applicants</h4>
-
-    <thead>
-
-      <tr>
-
-        <th>NAME</th>
-
-        <th>CONTACT</th>
-
-        <th>EDUCATION</th>
-
-        <th>EXPECTED PAY</th>
-
-      </tr>
-
-    </thead>
-
-    <tbody>
-
-      <% joblists.forEach(function(joblist) { if (joblist.applicant_id) {%>
-
-      <tr>
-
-
-
-        <td>
-
-         <ul> <a href="# %>"> <%= joblist.applicant_id.name %>  </a><br>
-
-          <%= joblist.applicant_id.email %> </ul>
-
-        </td>
-
-        <td><%= joblist.applicant_id.contact %></td>
-
-        <td><%= joblist.applicant_id.education %></td>
-
-        <td><%= joblist.applicant_id.expectedPay %></td>
-
-        <td> <input type ="submit" title = <%=joblist._id%> value = "Close Job" id="closejob<%=joblist._id%>" class="btn btn-info navigation"> </td>
-
-        <td> <input type ="submit" title = <%=joblist._id%> value = "Applicants" id="viewapplicants" class="btn btn-primary navigation"> </td>
-
-      </tr>
-
-      <% }}) %>
-
-    </tbody>
-
-  </table>
-
-  </div>
-
+ 
 </body>
-
 </html>

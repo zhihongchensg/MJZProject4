@@ -1,0 +1,27 @@
+
+<div class="container">
+ <table class="table table-hover">
+   <h4>Applicants for this job</h4>
+   <thead>
+     <tr>
+       <th>NAME</th>
+       <th>CONTACT</th>
+       <th>EDUCATION</th>
+       <th>EXPECTED PAY</th>
+     </tr>
+   </thead>
+   <tbody>
+     <% joblist.applicants.forEach(function(applicant) { if (applicant) {%>
+     <tr>
+       <td>
+        <ul> <a href="# %>"> <%= applicant.name %>  </a><br>
+         <%= applicant.email %> </ul>
+       </td>
+       <td><%= applicant.contact %></td>
+       <td><%= applicant.education %></td>
+       <td><%= applicant.expectedPay %></td>
+     </tr>
+         <% }}) %>
+   </tbody>
+ </table>
+ </div>
