@@ -12,22 +12,25 @@ $(document).ready(function ($) {
         success: function(data) {
           console.log(data)
 
-          // ITEM APPENDED TO EXPIRED JOB LIST
+                    // ITEM APPENDED TO EXPIRED JOB LIST
           var newExpiredJob = document.createElement('tr')
 
           // notice that element for job.description was not created.
           var newExpiredJobTitle = document.createElement('td')
-          var newExpiredJobExpired = document.createElement('td')
           var newExpiredJobpostDate = document.createElement('td')
           var newExpiredJobFilled = document.createElement('td')
+          var newExpiredJobViewApplicants = document.createElement('td')
+          var link = document.createElement('a')
+          link.href= data._id + "/applicants"
+          link.textContent="See Past Applicants"
+          newExpiredJobViewApplicants.appendChild(link)
           newExpiredJobTitle.innerText = data.title
-          newExpiredJobExpired.innerText = 'true'
           newExpiredJobpostDate.innerText = data.postDate
-          newExpiredJobFilled.innerText = data.filled
+          newExpiredJobFilled.innerText = "true"
           newExpiredJob.appendChild(newExpiredJobTitle)
-          newExpiredJob.appendChild(newExpiredJobExpired)
           newExpiredJob.appendChild(newExpiredJobpostDate)
           newExpiredJob.appendChild(newExpiredJobFilled)
+          newExpiredJob.appendChild(newExpiredJobViewApplicants)
 
           console.log(newExpiredJob)
           var ExpiredJobList = document.querySelectorAll('tbody')[1]
@@ -36,9 +39,8 @@ $(document).ready(function ($) {
 
           // ITEM REMOVED FROM UNEXPIRED joblist
           var CurrentJoblist = document.querySelectorAll('tbody')[0]
-          console.log(CurrentJoblist)
-          console.log($(data))
-          CurrentJoblist.removeChild($this.data)
+          var wantedElementID = ("." + data._id)
+          $(wantedElementID).remove()
 
         }
     });
