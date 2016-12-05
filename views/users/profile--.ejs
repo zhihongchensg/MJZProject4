@@ -27,8 +27,8 @@
      <% joblists.forEach(function(joblist) { if (joblist.expired == false) {%>
      <tr>
        <td>
-        <ul> <a href="# %>"> <%= joblist.title %>  </a><br>
-         <%= joblist.description %> </ul>
+        <a href="# %>"> <%= joblist.title %>  </a><br>
+         <%= joblist.description %>
        </td>
        <td><%= joblist.expired %></td>
        <td><%= joblist.postDate %></td>

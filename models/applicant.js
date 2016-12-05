@@ -1,14 +1,19 @@
 var mongoose = require("mongoose");
-require('mongoose-money');
+// require('mongoose-money');
 var Schema = mongoose.Schema;
-var Money = require('moneyjs');
+// var Money = require('moneyjs');
 
 var applicantSchema = new mongoose.Schema({
 						name: {
 							type: String,
-							required: true
+							validate: [
+			          function(name) {
+			            return name.length >= 0;
+			          },
+			          'Username should be longer'
+			        ]
 						},
-						contact: String,
+						contact: Number,
             email: {
               type: String,
               required: [true, 'Why no email?'],
@@ -16,12 +21,23 @@ var applicantSchema = new mongoose.Schema({
             },
             experience: {
 							type: Number,
-							required: true
+							required: true,
+							min: [0, 'must be >= 0'],
+							validate: [
+			          function(experience) {
+			            return experience >= 0;
+			          },
+			          'Experience shall be greater than 0.'
+			        ]
 						},
+						
             education: {
 							type: String,
-							required: true
+							required: true,
+							enum: ['diploma', 'bachelor', 'master', 'phd'],
+							default: 'diploma'
 						},
+
             age: {
               type: Number,
               required: true
@@ -34,18 +50,33 @@ var applicantSchema = new mongoose.Schema({
 							default: 'Male'
 						},
 
-            expectedPay: { type: Number},
+            expectedPay: {
+							type: Number,
+						},
 
             skills: {
 							type: String,
-							required: true
+							required: true,
+							validate: [
+			          function(skills) {
+			            return skills.length >= 0;
+			          },
+			          'Password should be longer'
+			        ]
 						},
             bioText: {
               type: String,
-              required: true,
+              required: [true, 'This must be filled'],
+							validate: [
+			          function(bioText) {
+			            return bioText.length >= 0	;
+			          },
+			          'Biotext should be at least 5 characters'
+			        ]
             }
 					});
 
-var Applicant = mongoose.model("Applicant", applicantSchema);
 
-module.exports = Applicant;
+					var Applicant = mongoose.model("Applicant", applicantSchema);
+
+					module.exports = Applicant;
