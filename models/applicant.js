@@ -1,12 +1,17 @@
 var mongoose = require("mongoose");
-require('mongoose-money');
+// require('mongoose-money');
 var Schema = mongoose.Schema;
-var Money = require('moneyjs');
+// var Money = require('moneyjs');
 
 var applicantSchema = new mongoose.Schema({
 						name: {
 							type: String,
-							required: true
+							validate: [
+			          function(name) {
+			            return name.length >= 3;
+			          },
+			          'Username should be longer'
+			        ]
 						},
 						contact: String,
             email: {
@@ -15,16 +20,27 @@ var applicantSchema = new mongoose.Schema({
               match: /.+\@.+\..+/
             },
             experience: {
-							type: String,
-							required: true
+							type: Number,
+							required: true,
+							min: [0, 'must be >= 0'],
+							validate: [
+			          function(experience) {
+			            return experience >= 0;
+			          },
+			          'Experience shall be greater than 0.'
+			        ]
+
 						},
             education: {
 							type: String,
-							required: true
+							required: true,
+							enum: ['diploma', 'bachelor', 'master', 'phd'],
+							default: 'diploma'
 						},
-            yearBorn: {
+
+            age: {
               type: Number,
-              required: [true, 'Must be a YYYY!']
+              required: true
             },
 
             gender: {
@@ -34,15 +50,29 @@ var applicantSchema = new mongoose.Schema({
 							default: 'Male'
 						},
 
-            expectedPay: { type: Number},
+            expectedPay: {
+							type: Number,
+						},
 
             skills: {
 							type: String,
-							required: true
+							required: true,
+							validate: [
+			          function(skills) {
+			            return skills.length >= 6;
+			          },
+			          'Password should be longer'
+			        ]
 						},
             bioText: {
               type: String,
-              required: true,
+              required: [true, 'This must be filled'],
+							validate: [
+			          function(bioText) {
+			            return bioText.length >= 5	;
+			          },
+			          'Biotext should be at least 5 characters'
+			        ]
             }
 					});
 

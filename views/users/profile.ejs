@@ -26,8 +26,8 @@
      <% joblists.forEach(function(joblist) { if (joblist.filled == false) {%>
      <tr class= "<%=joblist._id%>">
        <td>
-        <ul> <a href="# %>"> <%= joblist.title %>  </a><br>
-         <%= joblist.description %> </ul>
+        <a href="# %>"> <%= joblist.title %>  </a><br>
+         <%= joblist.description %>
        </td>
        <td><%= joblist.postDate.toDateString() %></td>
        <td><%= joblist.filled %></td>
