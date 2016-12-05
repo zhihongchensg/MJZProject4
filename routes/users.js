@@ -116,6 +116,14 @@ router.put('/recruiterProfile', isLoggedIn, function (req, res) {
 
 // =============all below is for operations ==========================
 
+
+router.get('/joblists/:id', function(req, res) {
+  Joblist.findById (req.params.id, function (err, foundJoblist) {
+    console.log(foundJoblist)
+    res.render('users/showJobDescript', {foundJoblist : foundJoblist}
+  )})
+})
+
 // Getting a new joblist form
 router.get('/newJoblist', isLoggedIn, function (req, res) {
   res.render('joblists/new')
