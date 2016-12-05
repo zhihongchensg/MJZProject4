@@ -1,27 +1,35 @@
 
 <div class="container">
+<div class = "floatLeft">
+  <h4> Filter Candidates </h4>
+
+
+
+</div>
+
+
+
+<div class="floatRight">
  <table class="table table-hover">
-   <h4>Applicants for this job</h4>
+   <h4>All Applicants for <%=joblist.title%></h4>
    <thead>
      <tr>
-       <th>NAME</th>
-       <th>CONTACT</th>
-       <th>EDUCATION</th>
-       <th>EXPECTED PAY</th>
+       <th>APPLICANT</th>
+       <th>BIO</th>
      </tr>
    </thead>
    <tbody>
      <% joblist.applicants.forEach(function(applicant) { if (applicant) {%>
      <tr>
        <td>
-        <ul> <a href="# %>"> <%= applicant.name %>  </a><br>
-         <%= applicant.email %> </ul>
+          <a href="# %>"> <%= applicant.name %>  </a><br>
+          <%= applicant.email %>
+          <%= applicant.contact %>
        </td>
-       <td><%= applicant.contact %></td>
-       <td><%= applicant.education %></td>
-       <td><%= applicant.expectedPay %></td>
+       <td><%= applicant.bioText %></td>
      </tr>
          <% }}) %>
    </tbody>
  </table>
+ </div>
  </div>

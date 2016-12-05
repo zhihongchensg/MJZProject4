@@ -1,5 +1,29 @@
 // Client Side Ajax Script
 $(document).ready(function ($) {
+
+  $('#cancelSaveUserDetails').on('click', (function(e){
+    e.preventDefault()
+    alert('here liao')
+    document.location.href = '/profile'
+  }))
+
+  $('#saveUserDetails').click(function(e) {
+      e.preventDefault();
+      alert('am here at edit ajax')
+      var formdata = $('.editUserDetails').serializeArray()
+
+      console.log(formdata);
+      $.ajax({
+        method: 'put',
+        url: '/recruiterProfile',
+        data: formdata
+      }).done(function(data) {
+        window.location = '/profile'
+      });
+  })
+
+
+
   $('.closed').on('click', (function(e){
     e.preventDefault()
     alert('Button closed clicked')
@@ -12,10 +36,10 @@ $(document).ready(function ($) {
         success: function(data) {
           console.log(data)
 
-                    // ITEM APPENDED TO EXPIRED JOB LIST
+          // ITEM APPENDED TO EXPIRED JOB LIST
           var newExpiredJob = document.createElement('tr')
 
-          // notice that element for job.description was not created.
+          // notice that element for job.description and expired was not created.
           var newExpiredJobTitle = document.createElement('td')
           var newExpiredJobpostDate = document.createElement('td')
           var newExpiredJobFilled = document.createElement('td')
