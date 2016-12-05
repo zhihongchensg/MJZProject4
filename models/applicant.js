@@ -30,7 +30,7 @@ var applicantSchema = new mongoose.Schema({
 			          'Experience shall be greater than 0.'
 			        ]
 						},
-						
+
             education: {
 							type: String,
 							required: true,
@@ -77,6 +77,9 @@ var applicantSchema = new mongoose.Schema({
 					});
 
 
-					var Applicant = mongoose.model("Applicant", applicantSchema);
 
-					module.exports = Applicant;
+var Applicant = mongoose.model("Applicant", applicantSchema);
+
+applicantSchema.index({skills: "text", bioText: "text"})
+
+module.exports = Applicant;

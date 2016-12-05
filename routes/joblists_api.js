@@ -23,8 +23,6 @@ router.put('/applicants/:id/searching', function(req,res){
   skillSet=req.body.applicant.skills
   skillSet=skillSet.replace(/,/gi, " ")
 
-  Joblist.skills.createIndex( { subject: "text" } )
-
 	Joblist.findById(req.params.id).populate({
     path: 'applicants',
     match:
@@ -36,10 +34,29 @@ router.put('/applicants/:id/searching', function(req,res){
             skills: { $text: { $search: "html" } }
       }
   }).exec(function(err,joblist){
+      console.log($text)
       console.log(joblist.applicants)
 			res.send(joblist.applicants);
 	});
 });
+
+
+// Joblist.findById(req.params.id).populate({
+//   path: 'applicants',
+//   match:{experience: { $gte: req.body.applicant.experience},
+//            education: req.body.applicant.education,
+//            age: { $lt: req.body.applicant.age},
+//            expectedPay: { $gte: req.body.applicant.expectedPay},
+//           skills:req.body.applicant.skills
+//     }
+// }).exec(function(err,joblist){
+//     console.log(joblist.applicants)
+//     res.send(joblist.applicants);
+// });
+
+
+
+
 
 
 module.exports = router

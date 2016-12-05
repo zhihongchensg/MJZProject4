@@ -80,40 +80,6 @@ router.get('/logout', isLoggedIn, function (req, res) {
   res.redirect('/')
 })
 
-router.get('/recruiterProfile', isLoggedIn, function (req, res) {
-  res.render('users/recruiterProfile')
-})
-
-router.put('/recruiterProfile', isLoggedIn, function (req, res) {
-  console.log(req.user.local.email)
-
-  // User.update(
-  //   {'local.email': req.user.local.email},
-  //   {
-  //     'local.name': req.body.user.name,
-  //     'local.password':req.body.user.password
-  //   },
-  //   function (err, doc) {
-  //     if (err) return handleError(err);
-  //   }
-  // )
-
-  var currentUser = User.findOne({email: req.user.local.email}, function(err, doc){
-    console.log(currentUser.name)
-    console.log(currentUser.email)
-    currentUser.name = req.body.user.name
-    currentUser.email = req.body.user.email
-    currentUser.password = req.body.user.password
-  })
-
-  currentUser.save()
-  // function(err){
-  //   console.log('done')
-  //   })
-
-  res.send('done')
-})
-
 // =============all below is for operations ==========================
 
 
