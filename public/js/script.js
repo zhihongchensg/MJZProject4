@@ -1,38 +1,64 @@
 // Client Side Ajax Script
 $(document).ready(function ($) {
-  $('.filters').on('submit', function(e){
-    e.preventDefault()
-    alert('Button filters submitted')
-    var formdata = $(this).serializeArray()
-    var experience = $('#experience').val()
-    var education = $('#education').val()
-    var age = $('#age').val()
-    var expectedPay = $('#expectedPay').val()
-    var skills = $('#skills').val()
-    var mata = $(this).data("job-id")
-    console.log(mata)
-    console.log(experience)
-    console.log(education)
-    console.log(age)
-    console.log(expectedPay)
-    console.log(skills)
-    // var parameters = {experience: experience}
-    $.ajax({
-      type: 'PUT',
-      data: formdata,
-      url: "/api/applicants/" + mata + "/searching",
-    }).done(doSomething)
 
-    function doSomething (data) {
-    alert('form submitted, update list of applicants')
-    console.log(data)
-    // eg. data (based on joblist.applicants) is an array now.
-    // eg. data[0].name = mary
-    data.forEach(function(applicant){
-      $('#results').append('<li>' + applicant.name  +'</li>')
-    })
-  }
+  $('.filters').on('submit', function(e){
+     e.preventDefault()
+     alert('Button filters submitted')
+     var formdata = $(this).serializeArray()
+     var experience = $('#experience').val()
+     var education = $('#education').val()
+     var age = $('#age').val()
+     var expectedPay = $('#expectedPay').val()
+     var skills = $('#skills').val()
+     var mata = $(this).data("job-id")
+     console.log(mata)
+     console.log(experience)
+     console.log(education)
+     console.log(age)
+     console.log(expectedPay)
+     console.log(skills)
+     // var parameters = {experience: experience}
+     $.ajax({
+       type: 'PUT',
+       data: formdata,
+       url: "/api/applicants/" + mata + "/searching",
+     }).done(doSomething)
+
+     function doSomething (data) {
+     alert('form submitted, update list of applicants')
+     console.log(data)
+     // eg. data (based on joblist.applicants) is an array now.
+     // eg. data[0].name = mary
+     data.forEach(function(applicant){
+       $('#results').append('<li>' + applicant.name  +'</li>')
+     })
+   }
+   })
+
+
+
+  $('#cancelSaveUserDetails').on('click', (function(e){
+    e.preventDefault()
+    alert('here liao')
+    document.location.href = '/profile'
+  }))
+
+  $('#saveUserDetails').click(function(e) {
+      e.preventDefault();
+      alert('am here at edit ajax')
+      var formdata = $('.editUserDetails').serializeArray()
+
+      console.log(formdata);
+      $.ajax({
+        method: 'put',
+        url: '/recruiterProfile',
+        data: formdata
+      }).done(function(data) {
+        window.location = '/profile'
+      });
   })
+
+
 
   $('.closed').on('click', (function(e){
     e.preventDefault()
@@ -49,19 +75,22 @@ $(document).ready(function ($) {
           // ITEM APPENDED TO EXPIRED JOB LIST
           var newExpiredJob = document.createElement('tr')
 
-          // notice that element for job.description was not created.
+          // notice that element for job.description and expired was not created.
           var newExpiredJobTitle = document.createElement('td')
-          var newExpiredJobExpired = document.createElement('td')
           var newExpiredJobpostDate = document.createElement('td')
           var newExpiredJobFilled = document.createElement('td')
+          var newExpiredJobViewApplicants = document.createElement('td')
+          var link = document.createElement('a')
+          link.href= data._id + "/applicants"
+          link.textContent="See Past Applicants"
+          newExpiredJobViewApplicants.appendChild(link)
           newExpiredJobTitle.innerText = data.title
-          newExpiredJobExpired.innerText = 'true'
           newExpiredJobpostDate.innerText = data.postDate
-          newExpiredJobFilled.innerText = data.filled
+          newExpiredJobFilled.innerText = "true"
           newExpiredJob.appendChild(newExpiredJobTitle)
-          newExpiredJob.appendChild(newExpiredJobExpired)
           newExpiredJob.appendChild(newExpiredJobpostDate)
           newExpiredJob.appendChild(newExpiredJobFilled)
+          newExpiredJob.appendChild(newExpiredJobViewApplicants)
 
           console.log(newExpiredJob)
           var ExpiredJobList = document.querySelectorAll('tbody')[1]

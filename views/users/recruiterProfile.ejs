@@ -3,6 +3,7 @@
 
 <body class="container">
 
+
 <form class = "editUserDetails" action="/users/<%= user.id %>/edit?_method=put" method="POST">
 
   <div class="form-group">
@@ -15,7 +16,7 @@
     <input type="text" class="form-control" id="email" value = "<%=user.local.email%>" name="user[local][email]">
   </div>
 
-  <input type="submit" value = "Submit" id = "saveUserDetails" class="btn btn-success">
+  <input type="submit" value = "Save" id = "saveUserDetails" class="btn btn-success">
   <input type="submit" value = "Cancel" id = "cancelSaveUserDetails" class="btn btn-info" >
 </form>
 

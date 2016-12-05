@@ -13,10 +13,10 @@ var joblistSchema = new mongoose.Schema({
 							required: true
 						},
 
-						expired: {
-							type: Boolean,
-						  default: false
-						},
+						// expired: {
+							// type: Boolean,
+						  // default: false
+						// },
 
 						postDate: {
 							type: Date,

@@ -30,7 +30,7 @@ function isNotLoggedIn (req, res, next) {
 router.get('/', function (req, res) {
   // res.render('applicants/index'); // load the index.ejs file
   Joblist.find({
-    expired: false
+    filled: false
   }, function (err, joblist) {
     res.render('applicants/index', {
       joblist: joblist
@@ -63,6 +63,9 @@ router.get('/profile', isLoggedIn, function (req, res) {
   Joblist.find({
     user_id: req.user.id
   })
+    .sort('-postDate')
+
+    // why need to populate applicants????
     .populate('applicants')
     .exec(function (err, joblists) {
       res.render('users/profile', {
@@ -79,6 +82,36 @@ router.get('/logout', isLoggedIn, function (req, res) {
 
 
 
+
+router.put('/recruiterProfile', isLoggedIn, function (req, res) {
+  console.log(req.user.local.email)
+
+  // User.update(
+  //   {'local.email': req.user.local.email},
+  //   {
+  //     'local.name': req.body.user.name,
+  //     'local.password':req.body.user.password
+  //   },
+  //   function (err, doc) {
+  //     if (err) return handleError(err);
+  //   }
+  // )
+
+  var currentUser = User.findOne({email: req.user.local.email}, function(err, doc){
+    console.log(currentUser.name)
+    console.log(currentUser.email)
+    currentUser.name = req.body.user.name
+    currentUser.email = req.body.user.email
+    currentUser.password = req.body.user.password
+  })
+
+  currentUser.save()
+  // function(err){
+  //   console.log('done')
+  //   })
+
+  res.send('done')
+})
 
 // =============all below is for operations ==========================
 
