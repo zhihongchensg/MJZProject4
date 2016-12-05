@@ -8,12 +8,12 @@ var applicantSchema = new mongoose.Schema({
 							type: String,
 							validate: [
 			          function(name) {
-			            return name.length >= 3;
+			            return name.length >= 0;
 			          },
 			          'Username should be longer'
 			        ]
 						},
-						contact: String,
+						contact: Number,
             email: {
               type: String,
               required: [true, 'Why no email?'],
@@ -59,7 +59,7 @@ var applicantSchema = new mongoose.Schema({
 							required: true,
 							validate: [
 			          function(skills) {
-			            return skills.length >= 6;
+			            return skills.length >= 0;
 			          },
 			          'Password should be longer'
 			        ]
@@ -69,13 +69,14 @@ var applicantSchema = new mongoose.Schema({
               required: [true, 'This must be filled'],
 							validate: [
 			          function(bioText) {
-			            return bioText.length >= 5	;
+			            return bioText.length >= 0	;
 			          },
 			          'Biotext should be at least 5 characters'
 			        ]
             }
 					});
 
-var Applicant = mongoose.model("Applicant", applicantSchema);
 
-module.exports = Applicant;
+					var Applicant = mongoose.model("Applicant", applicantSchema);
+
+					module.exports = Applicant;

@@ -24,7 +24,6 @@ var userSchema = new mongoose.Schema({
          'Password should be longer'
        ]
      },
-
   }
 })
 

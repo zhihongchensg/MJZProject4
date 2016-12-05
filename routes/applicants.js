@@ -22,7 +22,7 @@ router.get('/applicationForms/:id', function(req, res) {
   })
 })
 
-router.post('/applicationForms/:id', function(req, res) {
+router.post('/applicationForms/:id', function(req, res, next) {
   // console.log('successful posting')
   var newApplicant = new Applicant({
     name: req.body.applicant.name,
@@ -37,15 +37,22 @@ router.post('/applicationForms/:id', function(req, res) {
     bioText: req.body.applicant.bioText
   })
   newApplicant.save(function(err) {
-    if (err) throw new Error(err)
-    // console.log(newApplicant.gender)
-    Joblist.findById(req.params.id, function(err, foundJoblist){
-      // console.log(foundJoblist.applicants)
-      foundJoblist.applicants.push(newApplicant._id)
-      foundJoblist.save()
-    })
+
+    if (err) {
+      throw new Error(err)
+      // req.flash('errorMessage', 'You have made a mistake')
+      // return res.redirect('back')
+      // res.render('applicants/apply', {errors: err});
+      // res.status(500).send('error saving applicant'+ err);
+    } else{
+      Joblist.findById(req.params.id, function(err, foundJoblist){
+        // console.log(foundJoblist.applicants)
+        foundJoblist.applicants.push(newApplicant._id)
+        foundJoblist.save()
+      })
+    }
+    res.redirect('/')
   })
-  res.redirect('/')
 })
 
 module.exports = router

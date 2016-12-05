@@ -1,5 +1,3 @@
-
-
 <h1>Applicants Apply Page</h1>
 
 <div class="container">
@@ -9,16 +7,16 @@
     <input type="text" class="form-control" id="applicant-name" name="applicant[name]" placeholder="Jane Doe" required>
   </div>
   <div class="form-group" class="text-center">
-    <label for="contact">Contact</label>
-    <input type="text" class="form-control" id="applicant-contact" name="applicant[contact]" placeholder="88888888" required>
+    <label for="contact">Contact (eg. 87878787)</label>
+    <input type="tel" pattern="^\d{4}\d{4}$" class="form-control" id="applicant-contact" name="applicant[contact]" placeholder="87878787" required>
   </div>
   <div class="form-group" class="text-center">
     <label for="email">Email</label>
-    <input type="text" class="form-control" id="applicant-email" name="applicant[email]" placeholder="text@gmail.com" required>
+    <input type="email" class="form-control" id="applicant-email" name="applicant[email]" placeholder="text@gmail.com" required>
   </div>
   <div class="form-group" class="text-center">
     <label for="experience">Experience</label>
-    <input type="number" class="form-control" id="applicant-experience" name="applicant[experience]" placeholder="5" required>
+    <input type="number" min="0" class="form-control" id="applicant-experience" name="applicant[experience]" placeholder="5" required>
   </div>
   <div class="form-group" class="text-center">
     <label for="education">Education</label>
@@ -31,7 +29,7 @@
   </div>
   <div class="form-group" class="text-center">
     <label for="age">Age</label>
-    <input type="number" class="form-control" id="applicant-age" name="applicant[age]" placeholder="25" required>
+    <input type="number" min="16" max="80" class="form-control" id="applicant-age" name="applicant[age]" placeholder="25" required>
   </div>
 
   <div class="control-group" class="text-center">
@@ -49,11 +47,11 @@
   </div>
   <div class="form-group" class="text-center">
     <label for="expectedPay">Expected Pay</label>
-    <input type="text" class="form-control" id="applicant-pay" name="applicant[expectedPay]" placeholder="1000">
+    <input type="number" min="0" class="form-control" id="applicant-pay" name="applicant[expectedPay]" placeholder="1000">
   </div>
   <div class="form-group" class="text-center">
     <label for="experience">Skills</label>
-    <input type="text" name="applicant[skills]" placeholder="">
+    <input type="text" min="0" name="applicant[skills]" placeholder="">
   </div>
   <div class="form-group" class="text-center">
     <label for="exampleTextarea">Bio (not more than 250 characters)</label>
