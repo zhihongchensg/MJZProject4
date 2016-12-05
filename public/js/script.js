@@ -1,6 +1,42 @@
 // Client Side Ajax Script
 $(document).ready(function ($) {
 
+  $('.filters').on('submit', function(e){
+     e.preventDefault()
+     alert('Button filters submitted')
+     var formdata = $(this).serializeArray()
+     var experience = $('#experience').val()
+     var education = $('#education').val()
+     var age = $('#age').val()
+     var expectedPay = $('#expectedPay').val()
+     var skills = $('#skills').val()
+     var mata = $(this).data("job-id")
+     console.log(mata)
+     console.log(experience)
+     console.log(education)
+     console.log(age)
+     console.log(expectedPay)
+     console.log(skills)
+     // var parameters = {experience: experience}
+     $.ajax({
+       type: 'PUT',
+       data: formdata,
+       url: "/api/applicants/" + mata + "/searching",
+     }).done(doSomething)
+
+     function doSomething (data) {
+     alert('form submitted, update list of applicants')
+     console.log(data)
+     // eg. data (based on joblist.applicants) is an array now.
+     // eg. data[0].name = mary
+     data.forEach(function(applicant){
+       $('#results').append('<li>' + applicant.name  +'</li>')
+     })
+   }
+   })
+
+
+
   $('#cancelSaveUserDetails').on('click', (function(e){
     e.preventDefault()
     alert('here liao')

@@ -15,16 +15,16 @@ var applicantSchema = new mongoose.Schema({
               match: /.+\@.+\..+/
             },
             experience: {
-							type: String,
+							type: Number,
 							required: true
 						},
             education: {
 							type: String,
 							required: true
 						},
-            yearBorn: {
+            age: {
               type: Number,
-              required: [true, 'Must be a YYYY!']
+              required: true
             },
 
             gender: {

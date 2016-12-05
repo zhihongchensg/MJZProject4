@@ -1,0 +1,35 @@
+
+<div class="container">
+<div class = "floatLeft">
+  <h4> Filter Candidates </h4>
+
+
+
+</div>
+
+
+
+<div class="floatRight">
+ <table class="table table-hover">
+   <h4>All Applicants for <%=joblist.title%></h4>
+   <thead>
+     <tr>
+       <th>APPLICANT</th>
+       <th>BIO</th>
+     </tr>
+   </thead>
+   <tbody>
+     <% joblist.applicants.forEach(function(applicant) { if (applicant) {%>
+     <tr>
+       <td>
+          <a href="# %>"> <%= applicant.name %>  </a><br>
+          <%= applicant.email %>
+          <%= applicant.contact %>
+       </td>
+       <td><%= applicant.bioText %></td>
+     </tr>
+         <% }}) %>
+   </tbody>
+ </table>
+ </div>
+ </div>

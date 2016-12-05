@@ -30,7 +30,7 @@ router.post('/applicationForms/:id', function(req, res) {
     email: req.body.applicant.email,
     experience: req.body.applicant.experience,
     education: req.body.applicant.education,
-    yearBorn: req.body.applicant.yearBorn,
+    age: req.body.applicant.age,
     gender: req.body.applicant.gender,
     expectedPay: req.body.applicant.expectedPay,
     skills: req.body.applicant.skills,
