@@ -77,11 +77,18 @@ router.get('/logout', isLoggedIn, function (req, res) {
   res.redirect('/')
 })
 
-router.get('/recruiterProfile', isLoggedIn, function (req, res) {
-  res.render('users/recruiterProfile')
-})
+
+
 
 // =============all below is for operations ==========================
+
+
+router.get('/joblists/:id', function(req, res) {
+  Joblist.findById (req.params.id, function (err, foundJoblist) {
+    console.log(foundJoblist)
+    res.render('users/showJobDescript', {foundJoblist : foundJoblist}
+  )})
+})
 
 // Getting a new joblist form
 router.get('/newJoblist', isLoggedIn, function (req, res) {
@@ -103,10 +110,30 @@ router.post('/newJoblist', function (req, res) {
 })
 
 // From a joblist, go to its applicants list
+
 router.get('/:id/applicants', function(req,res){
 	Joblist.findById(req.params.id).populate('applicants').exec(function(err,joblist){
 			res.render("users/applicants", {joblist:joblist});
 	});
 });
+
+router.get('/users/:id/edit', isLoggedIn, function (req, res) {
+  User.findById(req.params.id, function (err, user){
+    res.render('users/recruiterProfile', {user:user})
+  })
+})
+
+router.put('/users/:id/edit', isLoggedIn, function (req, res) {
+  User.findByIdAndUpdate(req.params.id, {$set:req.body},function(err, user){
+    if (err) {
+      res.render('users/recruiterProfile')
+    }
+    else {
+
+        res.redirect('/profile')
+
+    }
+  })
+})
 
 module.exports = router

@@ -4,17 +4,6 @@ var router = express.Router()
 
 var Joblist = require('../models/joblist')
 
-// router.get('/', function (req, res) {
-  // res.render('applicants/index'); // load the index.ejs file
-//   Joblist.find({
-//     expired: false
-//   }, function (err, joblist) {
-//     res.render('applicants/index', {
-//       joblist: joblist
-//     })
-//   })
-// })
-
 router.get('/applicationForms/:id', function(req, res) {
   Joblist.findById(req.params.id, function(err, foundJoblist){
     res.render('applicants/apply', {foundJoblist:foundJoblist})
@@ -30,7 +19,7 @@ router.post('/applicationForms/:id', function(req, res) {
     email: req.body.applicant.email,
     experience: req.body.applicant.experience,
     education: req.body.applicant.education,
-    yearBorn: req.body.applicant.yearBorn,
+    age: req.body.applicant.age,
     gender: req.body.applicant.gender,
     expectedPay: req.body.applicant.expectedPay,
     skills: req.body.applicant.skills,
@@ -48,4 +37,8 @@ router.post('/applicationForms/:id', function(req, res) {
   res.redirect('/')
 })
 
+// get an applicant's profile
+router.get ('/:id', function (req, res){
+  res.render('applicants/profile')
+})
 module.exports = router
