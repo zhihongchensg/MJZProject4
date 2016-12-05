@@ -9,6 +9,7 @@
 <div class="container">
     <div class="page-header text-center">
         <h1>Jobs by <%=user.local.name%></h1>
+        <a href="/users/<%= user.id%>/edit">Edit</a>
     </div>
 </div>
 <div class = "container">
@@ -28,7 +29,6 @@
        <td>
          <a href="/joblists/<%= joblist._id%>" target="_blank"> <%= joblist.title %>  </a><br>
          <%= joblist.description.slice(0,150) %>
-
        </td>
        <td><%= joblist.postDate.toDateString() %></td>
        <td><%= joblist.filled %></td>

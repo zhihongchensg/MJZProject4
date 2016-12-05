@@ -80,6 +80,36 @@ router.get('/logout', isLoggedIn, function (req, res) {
   res.redirect('/')
 })
 
+router.put('/recruiterProfile', isLoggedIn, function (req, res) {
+  console.log(req.user.local.email)
+
+  // User.update(
+  //   {'local.email': req.user.local.email},
+  //   {
+  //     'local.name': req.body.user.name,
+  //     'local.password':req.body.user.password
+  //   },
+  //   function (err, doc) {
+  //     if (err) return handleError(err);
+  //   }
+  // )
+
+  var currentUser = User.findOne({email: req.user.local.email}, function(err, doc){
+    console.log(currentUser.name)
+    console.log(currentUser.email)
+    currentUser.name = req.body.user.name
+    currentUser.email = req.body.user.email
+    currentUser.password = req.body.user.password
+  })
+
+  currentUser.save()
+  // function(err){
+  //   console.log('done')
+  //   })
+
+  res.send('done')
+})
+
 // =============all below is for operations ==========================
 
 
@@ -110,10 +140,30 @@ router.post('/newJoblist', function (req, res) {
 })
 
 // From a joblist, go to its applicants list
+
 router.get('/:id/applicants', function(req,res){
 	Joblist.findById(req.params.id).populate('applicants').exec(function(err,joblist){
 			res.render("users/applicants", {joblist:joblist});
 	});
 });
+
+router.get('/users/:id/edit', isLoggedIn, function (req, res) {
+  User.findById(req.params.id, function (err, user){
+    res.render('users/recruiterProfile', {user:user})
+  })
+})
+
+router.put('/users/:id/edit', isLoggedIn, function (req, res) {
+  User.findByIdAndUpdate(req.params.id, {$set:req.body},function(err, user){
+    if (err) {
+      res.render('users/recruiterProfile')
+    }
+    else {
+
+        res.redirect('/profile')
+
+    }
+  })
+})
 
 module.exports = router
