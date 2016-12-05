@@ -73,7 +73,11 @@ var applicantSchema = new mongoose.Schema({
 			          },
 			          'Biotext should be at least 5 characters'
 			        ]
-            }
+            },
+					  jobID: {
+					    type: mongoose.Schema.Types.ObjectId,
+					    ref: 'Joblist'
+					  },
 					});
 
 

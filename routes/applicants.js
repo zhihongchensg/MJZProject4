@@ -23,7 +23,8 @@ router.post('/applicationForms/:id', function(req, res, next) {
     gender: req.body.applicant.gender,
     expectedPay: req.body.applicant.expectedPay,
     skills: req.body.applicant.skills,
-    bioText: req.body.applicant.bioText
+    bioText: req.body.applicant.bioText,
+    jobID: req.params.id
   })
   newApplicant.save(function(err) {
 
