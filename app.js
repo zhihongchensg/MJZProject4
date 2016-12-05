@@ -25,6 +25,15 @@ console.log(process.env.NODE_ENV)
 
 mongoose.connect(process.env.MONGO_URI)
 
+if (app.get('env') === 'development') {
+ app.use(function (err, req, res, next) {
+   res.status(err.status || 500)
+   res.render('error', {
+     message: err.message,
+     error: err
+   })
+ })
+}
 // middleware for using morgan to log all your requests on terminal
 app.use(morgan('dev'))
 

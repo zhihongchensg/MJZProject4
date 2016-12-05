@@ -28,6 +28,7 @@
        <td>
          <a href="/joblists/<%= joblist._id%>" target="_blank"> <%= joblist.title %>  </a><br>
          <%= joblist.description.slice(0,150) %>
+
        </td>
        <td><%= joblist.postDate.toDateString() %></td>
        <td><%= joblist.filled %></td>

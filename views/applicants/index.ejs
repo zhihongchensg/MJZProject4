@@ -1,18 +1,21 @@
 
-<ul class="nav navbar-nav navbar-left">
-  <% if (!user) { %>
-    <h1>Applicants view</h1>
-    <li><a href="/login">Recruiter Login</a></li>
-  <% } %>
-</ul>
+<!--<div class="container">
+  <ul class="nav navbar-nav navbar-left">
+    <% if (!user) { %>
+      <h1>Applicants view</h1>
+      <li><a href="/login">Recruiter Login</a></li>
+      <% } %>
+    </ul>
 
+</div>
+-->
 
 <div class="container">
  <table class="table table-hover">
    <thead>
      <tr>
        <th>TITLE</th>
-       <th>EXPIRED</th>
+       <%# <th>EXPIRED</th>%>
        <th>POST DATE</th>
        <th>FILLED</th>
      </tr>
@@ -21,10 +24,10 @@
      <% joblist.forEach(function(job) { %>
      <tr>
        <td>
-        <ul> <a href="# %>"> <%= job.title %>  </a><br>
-         <%= job.description %> </ul>
+         <a href="# %>"> <%= job.title %>  </a><br>
+         <%= job.description %>
        </td>
-       <td><%= job.expired %></td>
+
        <td><%= job.postDate %></td>
        <td><%= job.filled %></td>
        <td> <a href='/applicants/applicationForms/<%= job.id%>'><input type ="submit" action = "/applicants/applicationForms/<%= job.id%>" value = "Apply" id="viewapplicants" class="btn btn-primary navigation"></a> </td>

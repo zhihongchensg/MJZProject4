@@ -30,7 +30,7 @@ function isNotLoggedIn (req, res, next) {
 router.get('/', function (req, res) {
   // res.render('applicants/index'); // load the index.ejs file
   Joblist.find({
-    expired: false
+    filled: false
   }, function (err, joblist) {
     res.render('applicants/index', {
       joblist: joblist
