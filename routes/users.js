@@ -37,6 +37,10 @@ router.get('/', function (req, res) {
     })
   })
 })
+// added a home page
+router.get('/homepage', function (req, res) {
+  res.render('applicants/homepage')
+})
 
 // login routes
 // GET /login: Make sure user is not logged in 1st
