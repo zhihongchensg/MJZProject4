@@ -17,6 +17,7 @@ $(document).ready(function ($) {
      console.log(age)
      console.log(expectedPay)
      console.log(skills)
+     console.log(formdata)
      // var parameters = {experience: experience}
      $.ajax({
        type: 'PUT',
@@ -32,7 +33,7 @@ $(document).ready(function ($) {
        console.log($applicantList)
        $applicantList.html("")
         $('thead tr').append('<td><b>RATING</td>')
-        
+
        data.forEach(function(shortListedApplicant){
          console.log(shortListedApplicant)
          $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td> <td>' + shortListedApplicant.score + '</td></tr>')
