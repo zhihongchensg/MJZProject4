@@ -3,20 +3,41 @@
 .floatRight {
   width: 30%; float: right;
 }
+
 .container {
   overflow: hidden;
   padding: 20px 10px 50px 10px;
-  /*height: 600px;*/
+  /*background-color: #d2d2d2;*/
+  background-color: #e7e7e7;
+}
+.col-md-4{
+  background-color: white;
+  border-color: black;
+}
+.navbar {
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 
-.wrapper{
-  background-image: url("../images/1.jpg");
+body{
+  /*background-color: #F0FBD9;*/
+  background-image: url("/images/logistic3.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  /*background-size:contain;*/
+
+}
+/*.shippic{
+  background-image: url("/images/logistic3.jpg");
+  background-repeat: no-repeat;
+}*/
+/*.wrapper{*/
+  /*background-image: url("1.jpg");*/
+  /*background-repeat: no-repeat;*/
+  /*background-size: 100% 100%;
   width: 100%;
   height: 150px;
-}
+}*/
 
 .footer{
    position:fixed;

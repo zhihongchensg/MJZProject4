@@ -37,6 +37,10 @@ router.get('/', function (req, res) {
     })
   })
 })
+// added a home page
+router.get('/homepage', function (req, res) {
+  res.render('applicants/homepage')
+})
 
 // login routes
 // GET /login: Make sure user is not logged in 1st
@@ -72,7 +76,7 @@ router.get('/profile', isLoggedIn, function (req, res) {
         user: req.user,
         joblists: joblists,
         message1: req.flash('failureMessage'),
-        message2: req.flash('successMassage')
+        message2: req.flash('successMessage')
       })
     })
   })
