@@ -22,19 +22,22 @@ $(document).ready(function ($) {
        type: 'PUT',
        data: formdata,
        url: "/api/applicants/" + mata + "/searching",
-     }).done(doSomething)
+     }).done(function(data) {
 
-     function doSomething (data) {
-     alert('form submitted, update list of applicants')
-     console.log(data)
-     // eg. data (based on joblist.applicants) is an array now.
-     // eg. data[0].name = mary
-     data.forEach(function(applicant){
-       $('#results').append('<li>' + applicant.name  +'</li>')
+       alert('form submitted, update list of applicants')
+       console.log(data)
+       // eg. data (based on joblist.applicants) is an array now.
+       // eg. data[0].name = mary
+       var $applicantList = $('tbody')
+       console.log($applicantList)
+       $applicantList.html("")
+
+       data.forEach(function(shortListedApplicant){
+         console.log(shortListedApplicant)
+         $('tbody').append('<tr><td><a href="http://www.google.com">' + shortListedApplicant.name + '</a></td><td>' + shortListedApplicant.bioText + '</td></tr>')
+       })
+      })
      })
-   }
-   })
-
 
 
   $('#cancelSaveUserDetails').on('click', (function(e){

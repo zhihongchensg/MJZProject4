@@ -26,54 +26,62 @@ router.put('/applicants/:id/searching', function(req,res){
   console.log(skillSet)
 
       Applicant.find(
-          {jobID: req.params.id,
-          match:
-            {
-                  experience: { $gte: req.body.applicant.experience},
-                   education: req.body.applicant.education,
-                   age: { $lt: req.body.applicant.age},
-                   expectedPay: { $gte: req.body.applicant.expectedPay},
-            }
-        }).exec(function(err,ShortListedApplicants){
-          console.log('yoyo' + ShortListedApplicants)
+          {
+            jobID: req.params.id,
+            experience: { $gte: req.body.applicant.experience},
+            education: req.body.applicant.education,
+            age: { $gte: req.body.applicant.age},
+            expectedPay: { $gte: req.body.applicant.expectedPay},
+            $text: {
+              $search: skillSet,
+              $caseSensitive: false,
+              $language: 'en'
+            }},
+            { score: { $meta: "textScore" } }
+        )
+        .sort( { score: { $meta: "textScore" } } )
+        .exec(function(err,ShortListedApplicants){
+          if(!err){  console.log(ShortListedApplicants) }
 
-      ShortListedApplicants.find(
-          {jobID: req.params.id, $text: {
-            $search: skillSet,
-            $caseSensitive: false,
-            $language: 'en'
-          }},
-          { score: { $meta: "textScore" } }
-      )
-      .exec(function(err, results) {
-          if(!err){
-          console.log('results ' + results)
-      }
+// this is working
+        //   Applicant.find(
+        //       {
+        //         jobID: req.params.id,
+        //         $text: {
+        //           $search: skillSet,
+        //           $caseSensitive: false,
+        //           $language: 'en'
+        //       }},
+        //       { score: { $meta: "textScore" } }
+        //   )
+        //   .exec(function(err, results) {
+        //       if(!err){
+        //       console.log('results ' + results)
+        //   }
+        // })
+          res.send(ShortListedApplicants)
       })
-      res.send('results')
-  })
+
 
 });
 
 
-  // Joblist.findById(req.params.id).populate({
-  //   path: 'applicants'
-  //   }).exec(function(err,joblist){
-  //     joblist.applicants.find(
-  //            {
-  //              $text: {
-  //              $search: skillSet,
-  //              $caseSensitive: false
-  //            }}
-  //        )
-  //        .exec(function(err, results) {
-  //          if(!err){
-  //            console.log('results ' + results)
-  //                }
-  //         })
-  //         res.send(joblist.applicants);
-  //       })
-  //   })
+
+// this is working
+      // Applicant.find(
+      //     {jobID: req.params.id, $text: {
+      //       $search: skillSet,
+      //       $caseSensitive: false,
+      //       $language: 'en'
+      //     }},
+      //     { score: { $meta: "textScore" } }
+      // )
+      // .exec(function(err, results) {
+      //     if(!err){
+      //     console.log('results ' + results)
+      // }
+      // })
+
 
 
 
