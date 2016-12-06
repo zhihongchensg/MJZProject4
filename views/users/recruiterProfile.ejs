@@ -1,8 +1,8 @@
-<h2> Hello <%=user.local.name%> </h2>
-<br>
 
-<body class="container">
+<div class="container">
 
+  <h2> Hello <%=user.local.name%> </h2>
+  <br>
 
 <form class = "editUserDetails" action="/users/<%= user.id %>/edit?_method=put" method="POST">
 
@@ -20,4 +20,4 @@
   <input type="submit" value = "Cancel" id = "cancelSaveUserDetails" class="btn btn-info" >
 </form>
 
-</body>
+</div>
