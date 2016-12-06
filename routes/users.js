@@ -70,7 +70,9 @@ router.get('/profile', isLoggedIn, function (req, res) {
     .exec(function (err, joblists) {
       res.render('users/profile', {
         user: req.user,
-        joblists: joblists
+        joblists: joblists,
+        message1: req.flash('failureMessage'),
+        message2: req.flash('successMassage')
       })
     })
   })
@@ -114,9 +116,9 @@ router.put('/recruiterProfile', isLoggedIn, function (req, res) {
 
 
 router.get('/joblists/:id', function(req, res) {
-  Joblist.findById (req.params.id, function (err, foundJoblist) {
-    console.log(foundJoblist)
-    res.render('users/showJobDescript', {foundJoblist : foundJoblist}
+  Joblist.findById (req.params.id, function (err, joblist) {
+    console.log(joblist)
+    res.render('joblists/showJobDescript', {joblist : joblist}
   )})
 })
 
@@ -135,8 +137,39 @@ router.post('/newJoblist', function (req, res) {
   newJoblist.save(function (err) {
     if (err) throw new Error(err)
   })
-
+  req.flash('successMessage', "Joblist posted!")
   res.redirect('/profile')
+})
+
+// Get the edit view of a joblist
+router.get('/joblists/:id/edit', isLoggedIn, function (req, res) {
+  Joblist.findById(req.params.id, function(err, joblist) {
+    console.log(joblist.user_id)
+    console.log(req.user.id)
+    if (joblist.user_id == req.user.id) {
+      res.render('joblists/edit', {joblist:joblist})
+    }
+    else {
+      req.flash('failureMessage', "You can't edit this joblist!")
+      res.redirect ('/profile')
+    }
+  })
+})
+
+router.post('/joblists/:id/edit', isLoggedIn, function (req, res) {
+  Joblist.findById(req.params.id, function(err, joblist) {
+    if (err) {
+      res.render('joblists/edit')
+    }
+    else {
+      joblist.title = req.body.joblist.title,
+      joblist.description = req.body.joblist.description
+      joblist.save (function (err, joblist) {
+        res.redirect('/joblists/' + req.params.id)
+      })
+
+    }
+  })
 })
 
 // From a joblist, go to its applicants list
@@ -149,6 +182,8 @@ router.get('/:id/applicants', function(req,res){
 
 router.get('/users/:id/edit', isLoggedIn, function (req, res) {
   User.findById(req.params.id, function (err, user){
+    console.log(user._id)
+    console.log(req.user)
     res.render('users/recruiterProfile', {user:user})
   })
 })

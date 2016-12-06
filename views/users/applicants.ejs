@@ -57,7 +57,7 @@
      <% joblist.applicants.forEach(function(applicant) { if (applicant) {%>
      <tr>
        <td>
-          <a href="# %>"> <%= applicant.name %>  </a><br>
+          <a href="/applicants/<%= applicant.id%>"><%=applicant.name%></a><br>
           <%= applicant.email %>
           <%= applicant.contact %>
        </td>
