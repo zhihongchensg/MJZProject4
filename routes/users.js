@@ -70,7 +70,9 @@ router.get('/profile', isLoggedIn, function (req, res) {
     .exec(function (err, joblists) {
       res.render('users/profile', {
         user: req.user,
-        joblists: joblists
+        joblists: joblists,
+        message1: req.flash('failureMessage'),
+        message2: req.flash('successMassage')
       })
     })
   })
@@ -138,7 +140,7 @@ router.post('/newJoblist', function (req, res) {
   newJoblist.save(function (err) {
     if (err) throw new Error(err)
   })
-
+  req.flash('successMessage', "Joblist posted!")
   res.redirect('/profile')
 })
 
@@ -146,8 +148,14 @@ router.post('/newJoblist', function (req, res) {
 router.get('/joblists/:id/edit', isLoggedIn, function (req, res) {
   Joblist.findById(req.params.id, function(err, joblist) {
     console.log(joblist.user_id)
-    console.log(req.user)
-    res.render('joblists/edit', {joblist:joblist})
+    console.log(req.user.id)
+    if (joblist.user_id == req.user.id) {
+      res.render('joblists/edit', {joblist:joblist})
+    }
+    else {
+      req.flash('failureMessage', "You can't edit this joblist!")
+      res.redirect ('/profile')
+    }
   })
 })
 
