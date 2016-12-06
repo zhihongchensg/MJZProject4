@@ -5,7 +5,21 @@
         /*body        { padding-top:80px; word-wrap:break-word; }*/
     </style>
 </head>
+
 <body>%>
+
+<body>
+  <% if(message1.length > 0) { %>
+  <div class="alert alert-danger">
+    <%= message1 %>
+  </div>
+  <% } %>
+  <% if(message2.length > 0) { %>
+    <div class="alert alert-success">
+    <%= message2 %>
+    </div>
+  <% } %>
+
 <div class="container">
     <%# <div class="page-header text-center">%>
         <h1>Jobs Created by <%=user.local.name%></h1>
