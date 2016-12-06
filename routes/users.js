@@ -117,9 +117,9 @@ router.put('/recruiterProfile', isLoggedIn, function (req, res) {
 
 
 router.get('/joblists/:id', function(req, res) {
-  Joblist.findById (req.params.id, function (err, foundJoblist) {
-    console.log(foundJoblist)
-    res.render('users/showJobDescript', {foundJoblist : foundJoblist}
+  Joblist.findById (req.params.id, function (err, joblist) {
+    console.log(joblist)
+    res.render('joblists/showJobDescript', {joblist : joblist}
   )})
 })
 
@@ -142,6 +142,31 @@ router.post('/newJoblist', function (req, res) {
   res.redirect('/profile')
 })
 
+// Get the edit view of a joblist
+router.get('/joblists/:id/edit', isLoggedIn, function (req, res) {
+  Joblist.findById(req.params.id, function(err, joblist) {
+    console.log(joblist.user_id)
+    console.log(req.user)
+    res.render('joblists/edit', {joblist:joblist})
+  })
+})
+
+router.post('/joblists/:id/edit', isLoggedIn, function (req, res) {
+  Joblist.findById(req.params.id, function(err, joblist) {
+    if (err) {
+      res.render('joblists/edit')
+    }
+    else {
+      joblist.title = req.body.joblist.title,
+      joblist.description = req.body.joblist.description
+      joblist.save (function (err, joblist) {
+        res.redirect('/joblists/' + req.params.id)
+      })
+
+    }
+  })
+})
+
 // From a joblist, go to its applicants list
 
 router.get('/:id/applicants', function(req,res){
@@ -152,6 +177,8 @@ router.get('/:id/applicants', function(req,res){
 
 router.get('/users/:id/edit', isLoggedIn, function (req, res) {
   User.findById(req.params.id, function (err, user){
+    console.log(user._id)
+    console.log(req.user)
     res.render('users/recruiterProfile', {user:user})
   })
 })
