@@ -1,6 +1,11 @@
 .floatLeft { width: 60%; float: left; }
-.floatRight {width: 35%; float: right; }
-.container { overflow: hidden; }
+.floatRight {
+  width: 35%; float: right;
+}
+.container {
+  overflow: hidden;
+  /*height: 600px;*/
+}
 
 .wrapper{
   background-image: url("../images/1.jpg");
@@ -11,14 +16,21 @@
 }
 
 .footer{
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
   text-align: center;
-  position: absolute;
+  /*position: relative;*/
   bottom: 0;
-  width: 100%;
-  height: 50px;
+  /*width: 100%;*/
+  /*height: 50px;*/
   background-color: #e7e7e7;
 }
-
+.login{
+  margin-top: 10px;
+}
 form {
   display: block;
 }
