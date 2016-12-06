@@ -4,16 +4,28 @@
     <%= messages %>
   </div>
 <% } %>
+<div class="container-login">
+
 <form class="login-user" action="/login" method="post">
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" name="user[local][email]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="" required>
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <div class="col-sm-4">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" name="user[local][email]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="" required>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" name="user[local][password]" class="form-control" id="exampleInputPassword1" placeholder="Password" value="" data-parsley-minlength="4" required>
+    <div class="col-sm-4">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" name="user[local][password]" class="form-control" id="exampleInputPassword1" placeholder="Password" value="" data-parsley-minlength="4" required>
+      <%# <a href="/signup">Don't have an account? Sign up here</a>%>
+      <div class="login">
+        <input type="submit" value='Log in'>
+      </div>
+    </div>
   </div>
-  <input type="submit" value='Log in'>
+  <div class="form-group">
+  </div>
+
 </form>
-<a href="/signup">Don't have an account? Sign up here</a>
+</div>

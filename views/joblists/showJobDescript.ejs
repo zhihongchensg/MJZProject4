@@ -1,3 +1,6 @@
 <h2> <%=joblist.title%>  </h2>
 <p> <%=joblist.description%> </p>
+<% if (user) {
+  if (user.id == joblist.user_id) {%>
 <a href="/joblists/<%= joblist.id%>/edit">Edit</a>
+<% }}%>

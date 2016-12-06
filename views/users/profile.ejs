@@ -1,10 +1,13 @@
-<!doctype html>
+<%# <!doctype html>
 <html>
 <head>
     <style>
         /*body        { padding-top:80px; word-wrap:break-word; }*/
     </style>
 </head>
+
+<body>%>
+
 <body>
   <% if(message1.length > 0) { %>
   <div class="alert alert-danger">
@@ -16,13 +19,14 @@
     <%= message2 %>
     </div>
   <% } %>
-<div class="container">
-    <div class="page-header text-center">
-        <h1>Jobs by <%=user.local.name%></h1>
-        <a href="/users/<%= user.id%>/edit">Edit</a>
-    </div>
-</div>
+
+<%# <div class="container">%>
+    <%# <div class="page-header text-center">%>
+
+    <%# </div>%>
+<%# </div>%>
 <div class = "container">
+  <h1>Jobs Created by <%=user.local.name%></h1>
 <%# <div class="floatLeft">%>
  <table class="table table-hover">
    <h2> Current Job Postings</h2>
@@ -37,7 +41,7 @@
      <% joblists.forEach(function(joblist) { if (joblist.filled == false) {%>
      <tr class= "<%=joblist._id%>">
        <td>
-         <a href="/joblists/<%= joblist._id%>" target="_blank"> <%= joblist.title %>  </a><br>
+         <a href="/joblists/<%= joblist._id%>" target="_blank"> <%= joblist.title %></a><br>
          <%= joblist.description.slice(0,150) %>
        </td>
        <td><%= joblist.postDate.toDateString() %></td>
@@ -48,7 +52,6 @@
      <% }}) %>
    </tbody>
  </table>
- <br> <br>
  <%# </div>%>
 
  <%# <div class="floatRight">%>
@@ -76,5 +79,5 @@
   </table>
   <%# </div>%>
 </div>
-</body>
-</html>
+<%# </body>
+</html>%>

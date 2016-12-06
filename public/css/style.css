@@ -1,17 +1,60 @@
-.floatLeft { width: 65%; float: left; }
-.floatRight {width: 30%; float: right; }
-.container { overflow: hidden; }
 
-.wrapper .h1 {
-  /*background-image: url(../assets/bridge.jpg);
-  background-repeat: no-repeat;*/
-  background-size: 100% 100%;
-  width: 100%;
-  height: 25px;
+.floatLeft { width: 60%; float: left; }
+.floatRight {
+  width: 30%; float: right;
 }
 
-p {
-  font-size: 15px;
-    margin-top: 0;
-    margin-bottom: 1rem;
+.container {
+  overflow: hidden;
+  padding: 20px 10px 50px 10px;
+  /*background-color: #d2d2d2;*/
+  background-color: #e7e7e7;
+}
+.col-md-4{
+  background-color: white;
+  border-color: black;
+}
+.navbar {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+
+body{
+  /*background-color: #F0FBD9;*/
+  background-image: url("/images/logistic3.jpg");
+  background-repeat: no-repeat;
+  /*background-size:contain;*/
+
+}
+/*.shippic{
+  background-image: url("/images/logistic3.jpg");
+  background-repeat: no-repeat;
+}*/
+/*.wrapper{*/
+  /*background-image: url("1.jpg");*/
+  /*background-repeat: no-repeat;*/
+  /*background-size: 100% 100%;
+  width: 100%;
+  height: 150px;
+}*/
+
+.footer{
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+  text-align: center;
+  /*position: relative;*/
+  bottom: 0;
+  /*width: 100%;*/
+  /*height: 50px;*/
+  background-color: #e7e7e7;
+}
+.login{
+  margin-top: 10px;
+}
+form {
+  display: block;
 }
