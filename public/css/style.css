@@ -1,12 +1,14 @@
+
 .floatLeft { width: 60%; float: left; }
 .floatRight {
-  width: 35%; float: right;
+  width: 30%; float: right;
 }
 .container {
   overflow: hidden;
   padding: 20px 10px 50px 10px;
   /*height: 600px;*/
 }
+
 
 .wrapper{
   background-image: url("../images/1.jpg");

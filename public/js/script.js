@@ -31,10 +31,11 @@ $(document).ready(function ($) {
        var $applicantList = $('tbody')
        console.log($applicantList)
        $applicantList.html("")
-
+        $('thead tr').append('<td><b>RATING</td>')
+        
        data.forEach(function(shortListedApplicant){
          console.log(shortListedApplicant)
-         $('tbody').append('<tr><td><a href="http://www.google.com">' + shortListedApplicant.name + '</a></td><td>' + shortListedApplicant.bioText + '</td></tr>')
+         $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td> <td>' + shortListedApplicant.score + '</td></tr>')
        })
       })
      })

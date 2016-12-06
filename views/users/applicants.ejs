@@ -1,16 +1,17 @@
 <div class="container">
 <div class = "floatRight">
-  <h4> Filter Candidates </h4>
 
-  <h2>Filters</h2>
+  <h4>  </h4>
    <form class = "filters" data-job-id="<%=joblist._id%>">
+     <fieldset>
+    <legend> Candidate Filter </legend>
      <div class="row">
-       <div class="four columns">
-         <label for="number of years">Experience: </label>
-         <input type="number" name="applicant[experience]" id = "experience" placeholder="greater than number of years" >
+       <div class="form-group row">
+         <label for="number of years" class = "col-xs-4 col-form-label">Yrs of Exp: </label>
+         <input type="number" name="applicant[experience]" id = "experience" placeholder="years" >
        </div>
-       <div class="four columns">
-         <label for="Education types">Education: </label>
+       <div class="form-group row">
+         <label for="Education types" class = "col-xs-4 col-form-label">Min. Edu: </label>
          <select name = "applicant[education]" id = "education">
            <option value="diploma">Diploma</option>
            <option value="bachelor">Bachelor</option>
@@ -18,27 +19,23 @@
            <option value="phd">Phd</option>
          </select>
       </div>
-      <div class="four columns">
-        <label for="age">Age: </label>
-        <input type="number" name="applicant[age]" id = "age" placeholder="greater than number of years" >
+      <div class="form-group row">
+        <label for="age" class = "col-xs-4 col-form-label">Age: </label>
+        <input type="number" name="applicant[age]" id = "age" placeholder="years" >
       </div>
-      <div class="four columns">
-        <label for="expected pay">Expected Pay: </label>
-        <input type="number" name="applicant[expectedPay]" id = "expectedPay" placeholder="Expected Pay" >
+      <div class="form-group row">
+        <label for="expected pay" class = "col-xs-4 col-form-label">Budgeted Pay: </label>
+        <input type="number" name="applicant[expectedPay]" id = "expectedPay" placeholder="Budgeted Pay" >
       </div>
-      <div class="four columns">
-        <label for="list of skills">Skills: </label>
-        <input type="text" name="applicant[skills]" id = "skills" placeholder="Skills" >
+      <div class="form-group row">
+        <label for="list of skills" class = "col-xs-4 col-form-label"> Add Criteria: </label>
+        <input type="text" name="applicant[skills]" id = "skills" placeholder="Skills, Personal qualities" >
       </div>
-       <input type="submit" value='Submit the filters'  class = "filters">
+       <input type="submit" value='Submit Filter'  class = "filters btn btn-primary pull-left">
+       <input type="submit" value='Reset' onclick=location.reload() class = "btn btn-info pull-left">
      </div>
+   </fieldset>
   </form>
-
-  <h3> My results: </h3>
-  <ul id="results">
-    </ul>
-
-
 
 </div>
 
@@ -58,7 +55,7 @@
      <tr>
        <td>
           <a href="/applicants/<%= applicant.id%>"><%=applicant.name%></a><br>
-          <%= applicant.email %>
+          <%= applicant.email %> <br>
           <%= applicant.contact %>
        </td>
        <td><%= applicant.bioText %></td>
