@@ -19,11 +19,11 @@ router.get('/test', function(req, res){
 })
 
 router.put('/applicants/:id/searching', function(req,res){
-  console.log(req.body.applicant.experience)
-  skillSet=req.body.applicant.skills
-  skillSet=skillSet.replace(/,/gi, " ")
-  console.log('params - ' + req.params.id)
-  console.log(skillSet)
+  userFilterInput=req.body.applicant
+  for (var key in userFilterInput) {
+    if (userFilterInput[key] === "")
+      userFilterInput[key]=0
+    }
 
       Applicant.find(
           {
@@ -33,7 +33,7 @@ router.put('/applicants/:id/searching', function(req,res){
             age: { $gte: req.body.applicant.age},
             expectedPay: { $gte: req.body.applicant.expectedPay},
             $text: {
-              $search: skillSet,
+              $search: req.body.applicant.skills,
               $caseSensitive: false,
               $language: 'en'
             }},
@@ -42,6 +42,14 @@ router.put('/applicants/:id/searching', function(req,res){
         .sort( { score: { $meta: "textScore" } } )
         .exec(function(err,ShortListedApplicants){
           if(!err){  console.log(ShortListedApplicants) }
+
+
+          res.send(ShortListedApplicants)
+      })
+
+
+});
+
 
 // this is working
         //   Applicant.find(
@@ -59,12 +67,6 @@ router.put('/applicants/:id/searching', function(req,res){
         //       console.log('results ' + results)
         //   }
         // })
-          res.send(ShortListedApplicants)
-      })
-
-
-});
-
 
 
 // this is working
