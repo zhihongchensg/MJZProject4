@@ -82,9 +82,6 @@ router.get('/logout', isLoggedIn, function (req, res) {
   res.redirect('/')
 })
 
-
-
-
 router.put('/recruiterProfile', isLoggedIn, function (req, res) {
   console.log(req.user.local.email)
 

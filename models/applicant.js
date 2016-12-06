@@ -73,10 +73,17 @@ var applicantSchema = new mongoose.Schema({
 			          },
 			          'Biotext should be at least 5 characters'
 			        ]
-            }
+            },
+					  jobID: {
+					    type: mongoose.Schema.Types.ObjectId,
+					    ref: 'Joblist'
+					  },
 					});
 
 
-					var Applicant = mongoose.model("Applicant", applicantSchema);
 
-					module.exports = Applicant;
+var Applicant = mongoose.model("Applicant", applicantSchema);
+
+applicantSchema.index({skills: "text", bioText: "text"})
+
+module.exports = Applicant;
