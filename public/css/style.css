@@ -4,6 +4,7 @@
 }
 .container {
   overflow: hidden;
+  padding: 20px 10px 50px 10px;
   /*height: 600px;*/
 }
 
