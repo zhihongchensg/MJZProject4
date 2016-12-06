@@ -45,7 +45,10 @@ router.post('/applicationForms/:id', function(req, res, next) {
 })
 
 // get an applicant's profile
-router.get ('/:id', function (req, res){
-  res.render('applicants/profile')
+router.get('/:id', function(req, res) {
+  Applicant.findById (req.params.id, function (err, applicant) {
+    res.render('applicants/profile', {applicant:applicant})
+  })
 })
+
 module.exports = router
