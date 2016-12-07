@@ -1,4 +1,8 @@
-
+<% if(message.length > 0) { %>
+<div class="alert alert-danger">
+  <%= message %>
+</div>
+<% } %>
 <!--<div class="container">
   <ul class="nav navbar-nav navbar-left">
     <% if (!user) { %>

@@ -33,10 +33,12 @@ router.get('/', function (req, res) {
     filled: false
   }, function (err, joblist) {
     res.render('applicants/index', {
-      joblist: joblist
+      joblist: joblist,
+      message: req.flash('successMessage')
     })
   })
 })
+
 // added a home page
 router.get('/homepage', function (req, res) {
   res.render('applicants/homepage')
