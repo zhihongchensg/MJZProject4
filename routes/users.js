@@ -78,7 +78,8 @@ router.get('/profile', isLoggedIn, function (req, res) {
         user: req.user,
         joblists: joblists,
         message1: req.flash('failureMessage'),
-        message2: req.flash('successMessage')
+        message2: req.flash('successMessage'),
+        message3: req.flash('deleteMessage')
       })
     })
   })
@@ -128,6 +129,19 @@ router.get('/joblists/:id', function(req, res) {
     res.render('joblists/showJobDescript', {joblist : joblist}
   )})
 })
+
+// The logged in user can delete his own reviews only!
+router.delete('/joblists/:id/', function (req, res) {
+  Joblist.findByIdAndRemove(req.params.id, function (err, joblist) {
+    if (err) {
+      console.log(err)
+      res.render('joblists/showJobDescript')
+    } else {
+      res.redirect('/profile')
+    }
+  })
+})
+
 
 // Getting a new joblist form
 router.get('/newJoblist', isLoggedIn, function (req, res) {
@@ -201,7 +215,7 @@ router.put('/users/:id/edit', isLoggedIn, function (req, res) {
       res.render('users/recruiterProfile')
     }
     else {
-
+        req.flash('deleteMessage', "Joblist deleted!")
         res.redirect('/profile')
 
     }

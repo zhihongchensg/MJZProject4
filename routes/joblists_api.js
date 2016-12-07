@@ -19,109 +19,49 @@ router.get('/test', function(req, res){
 })
 
 router.put('/applicants/:id/searching', function(req,res){
-  console.log(req.body.applicant.experience)
+  // console.log('params - ' + req.params.id)
+  // console.log('skillset - ' + skillSet)
   skillSet=req.body.applicant.skills
   skillSet=skillSet.replace(/,/gi, " ")
-  console.log('params - ' + req.params.id)
+  console.log (typeof(skillSet))
   console.log(skillSet)
+  console.log(req.body.applicant)
+  if (skillSet !== "") {
+    Applicant.find(
+        {
+          jobID: req.params.id,
+          experience: { $gte: req.body.applicant.experience1, $lte: req.body.applicant.experience2},
+          education: { $gte: req.body.applicant.education},
+          age: { $lte: req.body.applicant.age},
+          expectedPay: { $lte: req.body.applicant.expectedPay},
+          $text: {
+            $search: skillSet,
+            $caseSensitive: false,
+            $language: 'en'
+          }},
+          { score: { $meta: "textScore" } }
+      )
+      .sort( { score: { $meta: "textScore" } }
+      )
+      .exec(function(err,ShortListedApplicants){
+        // if(!err){  console.log(ShortListedApplicants) }
+        res.send(ShortListedApplicants)
+    })
+  }
+  else {
+    Applicant.find({
+      jobID: req.params.id,
+      experience: { $gte: req.body.applicant.experience1, $lte: req.body.applicant.experience2},
+      education: { $gte: req.body.applicant.education},
+      age: { $lte: req.body.applicant.age},
+      expectedPay: { $lte: req.body.applicant.expectedPay},
+    }, function(err, ShortListedApplicants){
+      res.send(ShortListedApplicants)
+    })
 
-      Applicant.find(
-          {
-            jobID: req.params.id,
-            experience: { $gte: req.body.applicant.experience},
-            education: req.body.applicant.education,
-            age: { $gte: req.body.applicant.age},
-            expectedPay: { $gte: req.body.applicant.expectedPay},
-            $text: {
-              $search: skillSet,
-              $caseSensitive: false,
-              $language: 'en'
-            }},
-            { score: { $meta: "textScore" } }
-        )
-        .sort( { score: { $meta: "textScore" } } )
-        .exec(function(err,ShortListedApplicants){
-          if(!err){  console.log(ShortListedApplicants) }
-
-// this is working
-        //   Applicant.find(
-        //       {
-        //         jobID: req.params.id,
-        //         $text: {
-        //           $search: skillSet,
-        //           $caseSensitive: false,
-        //           $language: 'en'
-        //       }},
-        //       { score: { $meta: "textScore" } }
-        //   )
-        //   .exec(function(err, results) {
-        //       if(!err){
-        //       console.log('results ' + results)
-        //   }
-        // })
-          res.send(ShortListedApplicants)
-      })
-
+  }
 
 });
-
-
-
-// this is working
-      // Applicant.find(
-      //     {jobID: req.params.id, $text: {
-      //       $search: skillSet,
-      //       $caseSensitive: false,
-      //       $language: 'en'
-      //     }},
-      //     { score: { $meta: "textScore" } }
-      // )
-      // .exec(function(err, results) {
-      //     if(!err){
-      //     console.log('results ' + results)
-      // }
-      // })
-
-
-
-
-
-
-
-// 	Joblist.findById(req.params.id).populate({
-//     path: 'applicants',
-//     match:
-//       {
-//             // experience: { $gte: req.body.applicant.experience},
-//             //  education: req.body.applicant.education,
-//             //  age: { $lt: req.body.applicant.age},
-//             //  expectedPay: { $gte: req.body.applicant.expectedPay},
-//             skills: { $text: { $search: "html" } }
-//       }
-//   }).exec(function(err,joblist){
-//       console.log($text)
-//       console.log(joblist.applicants)
-// 			res.send(joblist.applicants);
-// 	});
-// });
-
-
-// Joblist.findById(req.params.id).populate({
-//   path: 'applicants',
-//   match:{experience: { $gte: req.body.applicant.experience},
-//            education: req.body.applicant.education,
-//            age: { $lt: req.body.applicant.age},
-//            expectedPay: { $gte: req.body.applicant.expectedPay},
-//           skills:req.body.applicant.skills
-//     }
-// }).exec(function(err,joblist){
-//     console.log(joblist.applicants)
-//     res.send(joblist.applicants);
-// });
-
-
-
-
 
 
 module.exports = router
