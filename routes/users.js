@@ -27,7 +27,7 @@ function isNotLoggedIn (req, res, next) {
   res.redirect('/profile')
 }
 
-router.get('/', function (req, res) {
+router.get('/applicants', function (req, res) {
   // res.render('applicants/index'); // load the index.ejs file
   Joblist.find({
     filled: false
@@ -40,7 +40,7 @@ router.get('/', function (req, res) {
 })
 
 // added a home page
-router.get('/homepage', function (req, res) {
+router.get('/', function (req, res) {
   res.render('applicants/homepage')
 })
 
