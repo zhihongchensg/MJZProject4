@@ -32,10 +32,10 @@ var applicantSchema = new mongoose.Schema({
 						},
 
             education: {
-							type: String,
+							type: Number,
 							required: true,
-							enum: ['diploma', 'bachelor', 'master', 'phd'],
-							default: 'diploma'
+							enum: [1, 2, 3, 4],
+							default: 1
 						},
 
             age: {

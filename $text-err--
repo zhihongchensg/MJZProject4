@@ -1,0 +1,68 @@
+// userFilterInput=req.body.applicant
+// for (var key in userFilterInput) {
+//   if (userFilterInput[key] === "")
+//     userFilterInput[key]=0
+//   }
+
+    // Applicant.find(
+    //     {
+    //       jobID: req.params.id,
+    //       experience: { $gte: req.body.applicant.experience},
+    //       education: req.body.applicant.education,
+    //       age: { $gte: req.body.applicant.age},
+    //       expectedPay: { $gte: req.body.applicant.expectedPay},
+    //     }
+    //   )
+    //   .exec(function(err,ShortListedApplicants){
+    //     console.log(ShortListedApplicants)
+    //     firstShortList = []
+    //     for (var i = 0; i < ShortListedApplicants.length; i++) {
+    //       console.log(ShortListedApplicants[i]._id)
+    //       firstShortList.push(ShortListedApplicants[i]._id)
+    //     }
+    //     console.log('this is crazy')
+    //     console.log(firstShortList)
+    //
+    //     Applicant.find(
+    //         {
+    //           _id:'58460d92401f4d15903a878c',
+        //       $text: {
+        //         $search: userFilterInput.skills,
+        //         $caseSensitive: false,
+        //         $language: 'en'
+        //       }},
+        //       { score: { $meta: "textScore" }
+        //     }
+        // )
+        //   // .where("_id").in([firstShortList])
+        //   .sort( { score: { $meta: "textScore" }
+    //    } )
+    //       .exec(function(err,ShortListedApplicants){
+    //         if(!err){
+    //           console.log('finally... here...')
+    //           console.log(ShortListedApplicants) }
+    //       })
+    //
+    //     res.send(ShortListedApplicants)
+    // })
+
+
+
+
+
+// this is working
+      //   Applicant.find(
+      //       {
+      //         jobID: req.params.id,
+      //         $text: {
+      //           $search: skillSet,
+      //           $caseSensitive: false,
+      //           $language: 'en'
+      //       }},
+      //       { score: { $meta: "textScore" } }
+      //   )
+      //   .exec(function(err, results) {
+      //       if(!err){
+      //       console.log('results ' + results)
+      //   }
+      // })
