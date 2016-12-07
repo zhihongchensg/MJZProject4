@@ -38,7 +38,7 @@
         <input type="text" name="applicant[skills]" id = "skills" placeholder="Skills, Personal qualities" >
       </div>
        <input type="submit" value='Submit Filter'  class = "filters btn btn-primary">
-       <input type="submit" value='Reset' onclick=location.reload() class = "btn btn-info">
+       <input type="submit" value='Reset' class = "btn btn-info">
      </div>
    </fieldset>
   </form>
@@ -49,7 +49,7 @@
 
 <div class="floatLeft">
  <table class="table table-hover">
-   <h4>All Applicants for <%=joblist.title%></h4>
+   <h4> <a href = applicants>  All Candidates </a> for <%=joblist.title%></h4>
    <thead>
      <tr>
        <th>APPLICANT</th>
@@ -57,6 +57,7 @@
      </tr>
    </thead>
    <tbody>
+     <%joblist.applicants.reverse()%>
      <% joblist.applicants.forEach(function(applicant) { if (applicant) {%>
      <tr>
        <td>

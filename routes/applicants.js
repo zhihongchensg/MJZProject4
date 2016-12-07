@@ -39,9 +39,10 @@ router.post('/applicationForms/:id', function(req, res, next) {
         // console.log(foundJoblist.applicants)
         foundJoblist.applicants.push(newApplicant._id)
         foundJoblist.save()
-      })
+      }).sort(-newApplicant._id)
     }
-    res.redirect('/')
+    req.flash('successMessage', "You successfully applied!")
+    res.redirect('/applicants')
   })
 })
 

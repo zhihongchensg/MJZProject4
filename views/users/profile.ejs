@@ -46,7 +46,7 @@
      <% joblists.forEach(function(joblist) { if (joblist.filled == false) {%>
      <tr class= "<%=joblist._id%>">
        <td>
-         <a href="/joblists/<%= joblist._id%>" target="_blank"> <%= joblist.title %></a><br>
+         <a href="/joblists/<%= joblist._id%>" > <%= joblist.title %></a><br>
          <%= joblist.description.slice(0,150) %>
        </td>
        <td><%= joblist.postDate.toDateString() %></td>
@@ -73,7 +73,7 @@
       <% joblists.forEach(function(joblist) { if (joblist.filled == true) {%>
       <tr>
         <td>
-         <a href="/joblists/<%= joblist._id%>" target="_blank"> <%= joblist.title %>
+         <a href="/joblists/<%= joblist._id%>" > <%= joblist.title %>
         </td>
         <td><%= joblist.postDate.toDateString()%></td>
         <td><%= joblist.filled %></td>
