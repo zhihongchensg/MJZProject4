@@ -19,36 +19,103 @@ router.get('/test', function(req, res){
 })
 
 router.put('/applicants/:id/searching', function(req,res){
-  userFilterInput=req.body.applicant
-  for (var key in userFilterInput) {
-    if (userFilterInput[key] === "")
-      userFilterInput[key]=0
-    }
+  // console.log('params - ' + req.params.id)
+  // console.log('skillset - ' + skillSet)
+  skillSet=req.body.applicant.skills
+  skillSet=skillSet.replace(/,/gi, " ")
+  console.log (typeof(skillSet))
+  console.log(skillSet)
+  console.log(req.body.applicant)
+  if (skillSet !== "") {
+    Applicant.find(
+        {
+          jobID: req.params.id,
+          experience: { $gte: req.body.applicant.experience1, $lte: req.body.applicant.experience2},
+          education: { $gte: req.body.applicant.education},
+          age: { $lte: req.body.applicant.age},
+          expectedPay: { $lte: req.body.applicant.expectedPay},
+          $text: {
+            $search: skillSet,
+            $caseSensitive: false,
+            $language: 'en'
+          }},
+          { score: { $meta: "textScore" } }
+      )
+      .sort( { score: { $meta: "textScore" } }
+      )
+      .exec(function(err,ShortListedApplicants){
+        // if(!err){  console.log(ShortListedApplicants) }
+        res.send(ShortListedApplicants)
+    })
+  }
+  else {
+    Applicant.find({
+      jobID: req.params.id,
+      experience: { $gte: req.body.applicant.experience1, $lte: req.body.applicant.experience2},
+      education: { $gte: req.body.applicant.education},
+      age: { $lte: req.body.applicant.age},
+      expectedPay: { $lte: req.body.applicant.expectedPay},
+    }, function(err, ShortListedApplicants){
+      res.send(ShortListedApplicants)
+    })
 
-      Applicant.find(
-          {
-            jobID: req.params.id,
-            experience: { $gte: req.body.applicant.experience},
-            education: req.body.applicant.education,
-            age: { $gte: req.body.applicant.age},
-            expectedPay: { $gte: req.body.applicant.expectedPay},
-            $text: {
-              $search: req.body.applicant.skills,
-              $caseSensitive: false,
-              $language: 'en'
-            }},
-            { score: { $meta: "textScore" } }
-        )
-        .sort( { score: { $meta: "textScore" } } )
-        .exec(function(err,ShortListedApplicants){
-          if(!err){  console.log(ShortListedApplicants) }
-
-
-          res.send(ShortListedApplicants)
-      })
-
+  }
 
 });
+
+
+
+
+  // userFilterInput=req.body.applicant
+  // for (var key in userFilterInput) {
+  //   if (userFilterInput[key] === "")
+  //     userFilterInput[key]=0
+  //   }
+
+      // Applicant.find(
+      //     {
+      //       jobID: req.params.id,
+      //       experience: { $gte: req.body.applicant.experience},
+      //       education: req.body.applicant.education,
+      //       age: { $gte: req.body.applicant.age},
+      //       expectedPay: { $gte: req.body.applicant.expectedPay},
+      //     }
+      //   )
+      //   .exec(function(err,ShortListedApplicants){
+      //     console.log(ShortListedApplicants)
+      //     firstShortList = []
+      //     for (var i = 0; i < ShortListedApplicants.length; i++) {
+      //       console.log(ShortListedApplicants[i]._id)
+      //       firstShortList.push(ShortListedApplicants[i]._id)
+      //     }
+      //     console.log('this is crazy')
+      //     console.log(firstShortList)
+      //
+      //     Applicant.find(
+      //         {
+      //           _id:'58460d92401f4d15903a878c',
+          //       $text: {
+          //         $search: userFilterInput.skills,
+          //         $caseSensitive: false,
+          //         $language: 'en'
+          //       }},
+          //       { score: { $meta: "textScore" }
+          //     }
+          // )
+          //   // .where("_id").in([firstShortList])
+          //   .sort( { score: { $meta: "textScore" }
+      //    } )
+      //       .exec(function(err,ShortListedApplicants){
+      //         if(!err){
+      //           console.log('finally... here...')
+      //           console.log(ShortListedApplicants) }
+      //       })
+      //
+      //     res.send(ShortListedApplicants)
+      // })
+
+
+
 
 
 // this is working

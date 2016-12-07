@@ -84,6 +84,6 @@ var applicantSchema = new mongoose.Schema({
 
 var Applicant = mongoose.model("Applicant", applicantSchema);
 
-// applicantSchema.index({skills: "text", bioText: "text"})
+applicantSchema.index({skills: "text", bioText: "text"})
 
 module.exports = Applicant;
