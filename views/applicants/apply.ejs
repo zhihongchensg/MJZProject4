@@ -1,6 +1,8 @@
+<h1>Applicant Apply Page</h1>
 
 <div class="container">
-  <h1>Applicant Apply Page</h1>
+<div class = "floatLeft">
+
 <form action="/applicants/applicationForms/<%=foundJoblist.id%>" method="POST" class="form-action">
   <div class="form-group" class="text-center">
     <label for="name">Name</label>
@@ -59,4 +61,12 @@
   </div>
   <button type="submit" class="btn btn-primary">Apply</button>
 </form>
+</div>
+
+<div class = "floatRight">
+  <h2> For <%=foundJoblist.title%>  </h2>
+  <p> <%=foundJoblist.description%> </p>
+
+</div>
+
 </div>

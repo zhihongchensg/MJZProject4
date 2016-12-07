@@ -25,6 +25,7 @@
      </tr>
    </thead>
    <tbody>
+     <% joblist.reverse()%>
      <% joblist.forEach(function(job) { %>
      <tr>
        <td>
@@ -34,7 +35,7 @@
 
        <td><%= job.postDate %></td>
        <td><%= job.filled %></td>
-         <td> <a href='/applicants/applicationForms/<%= job.id%>'><input type ="submit" action = "/applicants/applicationForms/<%= job.id%>" value = "Apply" id="viewapplicants" class="btn btn-primary navigation"></a> </td>
+         <td> <a href='/applicants/applicationForms/<%= job.id%>'><input type ="submit" value = "Apply" id="viewapplicants" class="btn btn-primary navigation"></a> </td>
      </tr>
      <% }) %>
    </tbody>

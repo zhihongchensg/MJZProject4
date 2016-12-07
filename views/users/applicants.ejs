@@ -29,14 +29,14 @@
       </div>
       <div class="form-group row">
         <label for="expected pay" class = "col-xs-4 col-form-label">Budgeted Pay <=: </label>
-        <input type="number" name="applicant[expectedPay]" id = "expectedPay" placeholder="Budgeted Pay" value = 0>
+        <input type="number" name="applicant[expectedPay]" id = "expectedPay" placeholder="Budgeted Salary" value = 0>
       </div>
       <div class="form-group row">
-        <label for="list of skills" class = "col-xs-4 col-form-label"> Add Criteria: </label>
+        <label for="list of skills" class = "col-xs-4 col-form-label"> Criteria: </label>
         <input type="text" name="applicant[skills]" id = "skills" placeholder="Skills, Personal qualities" >
       </div>
        <input type="submit" value='Submit Filter'  class = "filters btn btn-primary pull-left">
-       <input type="submit" value='Reset' onclick=location.reload() class = "btn btn-info pull-left">
+       <input type="reset" value='Reset' class = "btn btn-info pull-left">
      </div>
    </fieldset>
   </form>
@@ -47,7 +47,7 @@
 
 <div class="floatLeft">
  <table class="table table-hover">
-   <h4>All Applicants for <%=joblist.title%></h4>
+   <h4> <a href = applicants>  All Candidates </a> for <%=joblist.title%></h4>
    <thead>
      <tr>
        <th>APPLICANT</th>
@@ -55,6 +55,7 @@
      </tr>
    </thead>
    <tbody>
+     <%joblist.applicants.reverse()%>
      <% joblist.applicants.forEach(function(applicant) { if (applicant) {%>
      <tr>
        <td>

@@ -1,6 +1,8 @@
 <h2> <%=joblist.title%>  </h2>
 <p> <%=joblist.description%> </p>
 
+<a href='/applicants/applicationForms/<%= joblist.id%>'> <input type ="submit" value = "Apply" id="viewapplicants" class="btn btn-primary navigation"> </a>
+
 <% if (user) {
   if (user.id == joblist.user_id) {%>
 

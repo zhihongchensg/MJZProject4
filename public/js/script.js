@@ -27,19 +27,26 @@ $(document).ready(function ($) {
        url: "/api/applicants/" + mata + "/searching",
      }).done(function(data) {
 
-       alert('form submitted, update list of applicants')
-       console.log(data)
        // eg. data (based on joblist.applicants) is an array now.
        // eg. data[0].name = mary
        var $applicantList = $('tbody')
-       console.log($applicantList)
        $applicantList.html("")
-        $('thead tr').append('<td><b>RATING</td>')
 
-       data.forEach(function(shortListedApplicant){
-         console.log(shortListedApplicant)
-         $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td> <td>' + shortListedApplicant.score + '</td></tr>')
-       })
+       $('thead').html("")
+       $('thead').append('<tr><th>APPLICANT</th><th>BIO</th> </tr>')
+
+       if (data.length>0 && data[0].hasOwnProperty('score')) {
+          $('thead tr').append('<th>RATING</th>')
+          data.forEach(function(shortListedApplicant){
+            console.log(shortListedApplicant)
+            $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td> <td>' + shortListedApplicant.score + '</td></tr>')
+          })
+       }else{
+         data.forEach(function(shortListedApplicant){
+           console.log(shortListedApplicant)
+           $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td></tr>')
+         })
+       }
       })
      })
 
