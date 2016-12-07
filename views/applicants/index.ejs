@@ -1,4 +1,8 @@
-
+<% if(message.length > 0) { %>
+<div class="alert alert-danger">
+  <%= message %>
+</div>
+<% } %>
 <!--<div class="container">
   <ul class="nav navbar-nav navbar-left">
     <% if (!user) { %>
@@ -29,7 +33,7 @@
          <%= job.description %>
        </td>
 
-       <td><%= job.postDate %></td>
+       <td><%= job.postDate.toDateString() %></td>
        <td><%= job.filled %></td>
          <td> <a href='/applicants/applicationForms/<%= job.id%>'><input type ="submit" value = "Apply" id="viewapplicants" class="btn btn-primary navigation"></a> </td>
      </tr>

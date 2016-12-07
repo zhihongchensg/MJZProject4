@@ -3,22 +3,49 @@
 .floatRight {
   width: 30%; float: right;
 }
+#map {
+  /*height: 100px;
+  width: 50%;*/
+ }
 
 .container {
   overflow: hidden;
-  padding: 20px 10px 50px 10px;
+  border-radius: 5px;
+  padding: 20px 10px 20px 10px;
+  margin-bottom: 15px;
   /*background-color: #d2d2d2;*/
   background-color: #e7e7e7;
 }
-.col-md-4{
+.col-md-4 {
   background-color: white;
   border-color: black;
+  margin-bottom: 10px;
+}
+
+.col-md-10 {
+  background-color: white;
+  border-color: black;
+  padding-top: 10px;
+  width: 100%;
+  margin-top: 10px;
 }
 .navbar {
   margin-left: 15px;
   margin-right: 15px;
 }
 
+.container-login{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  height: 250px;
+  background-color: #ccc;
+  border-radius: 5px;
+}
 
 body{
   /*background-color: #F0FBD9;*/
@@ -27,18 +54,28 @@ body{
   /*background-size:contain;*/
 
 }
-/*.shippic{
-  background-image: url("/images/logistic3.jpg");
-  background-repeat: no-repeat;
-}*/
-/*.wrapper{*/
-  /*background-image: url("1.jpg");*/
-  /*background-repeat: no-repeat;*/
-  /*background-size: 100% 100%;
-  width: 100%;
-  height: 150px;
-}*/
 
+#experience1 {
+  width: 30%;
+}
+
+#experience2 {
+  width: 30%;
+}
+
+
+.form-group{
+  margin: 5px 5px 5px 5px;
+}
+
+
+#age1{
+  width: 30%;
+}
+
+#age2{
+  width: 30%;
+}
 .footer{
    position:fixed;
    left:0px;

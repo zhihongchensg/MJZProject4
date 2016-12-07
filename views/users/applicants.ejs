@@ -4,18 +4,17 @@
   <h4>  </h4>
    <form class = "filters" data-job-id="<%=joblist._id%>">
      <fieldset>
-    <legend> Candidate Filter </legend>
+    <legend> Candidate Filters </legend>
      <div class="row">
-       <div class="form-group row">
-         <label for="number of years" class = "col-xs-4 col-form-label">Yrs of Exp >= : </label>
+       <div class="form-group">
+         <label for="number of years"><span> Min. Exp</span></label>
          <input type="number" name="applicant[experience1]" id = "experience1" placeholder="years" value = 0>
-       </div>
-       <div class="form-group row">
-         <label for="number of years" class = "col-xs-4 col-form-label">Yrs of Exp <= : </label>
+
+         <label for="number of years" id ="ExperienceInput"><span>Max. Exp </span></label>
          <input type="number" name="applicant[experience2]" id = "experience2" placeholder="years" value = 0>
        </div>
-       <div class="form-group row">
-         <label for="Education types" class = "col-xs-4 col-form-label">Min. Edu: </label>
+       <div class="form-group">
+         <label for="Education types">Min. Education</label>
          <select type="number" name = "applicant[education]" id = "education">
            <option value=1>Diploma</option>
            <option value=2>Bachelor</option>
@@ -23,20 +22,23 @@
            <option value=4>Phd</option>
          </select>
       </div>
-      <div class="form-group row">
-        <label for="age" class = "col-xs-4 col-form-label">Age <=: </label>
-        <input type="number" name="applicant[age]" id = "age" placeholder="years" value = 0>
+      <div class="form-group">
+        <label for="age">Min. Age</label>
+        <input type="number" name="applicant[age1]" id = "age1" placeholder="years" value = 0>
+        <label for="age">Max. Age</label>
+        <input type="number" name="applicant[age2]" id = "age2" placeholder="years" value = 0>
       </div>
-      <div class="form-group row">
-        <label for="expected pay" class = "col-xs-4 col-form-label">Budgeted Pay <=: </label>
-        <input type="number" name="applicant[expectedPay]" id = "expectedPay" placeholder="Budgeted Salary" value = 0>
+
+      <div class="form-group">
+        <label for="expected pay">Budgeted Pay</label>
+        <input type="number" name="applicant[expectedPay]" id = "expectedPay" placeholder="Budgeted Pay" value = 0>
       </div>
-      <div class="form-group row">
-        <label for="list of skills" class = "col-xs-4 col-form-label"> Criteria: </label>
+      <div class="form-group">
+        <label for="list of skills"> Add Criteria</label>
         <input type="text" name="applicant[skills]" id = "skills" placeholder="Skills, Personal qualities" >
       </div>
-       <input type="submit" value='Submit Filter'  class = "filters btn btn-primary pull-left">
-       <input type="reset" value='Reset' class = "btn btn-info pull-left">
+       <input type="submit" value='Submit Filter'  class = "filters btn btn-primary">
+       <input type="submit" value='Reset' class = "btn btn-info">
      </div>
    </fieldset>
   </form>
