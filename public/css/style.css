@@ -60,10 +60,28 @@ body{
   /*background-size:contain;*/
 
 }
+
+#experience1 {
+  width: 30%;
+}
+
+#experience2 {
+  width: 30%;
+}
+
+
 .form-group{
   margin: 5px 5px 5px 5px;
 }
 
+
+#age1{
+  width: 30%;
+}
+
+#age2{
+  width: 30%;
+}
 .footer{
    position:fixed;
    left:0px;

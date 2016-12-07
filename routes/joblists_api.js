@@ -26,13 +26,14 @@ router.put('/applicants/:id/searching', function(req,res){
   console.log (typeof(skillSet))
   console.log(skillSet)
   console.log(req.body.applicant)
+
   if (skillSet !== "") {
     Applicant.find(
         {
           jobID: req.params.id,
           experience: { $gte: req.body.applicant.experience1, $lte: req.body.applicant.experience2},
           education: { $gte: req.body.applicant.education},
-          age: { $lte: req.body.applicant.age},
+          age: { $gte: req.body.applicant.age1, $lte: req.body.applicant.age2},
           expectedPay: { $lte: req.body.applicant.expectedPay},
           $text: {
             $search: skillSet,
@@ -53,7 +54,7 @@ router.put('/applicants/:id/searching', function(req,res){
       jobID: req.params.id,
       experience: { $gte: req.body.applicant.experience1, $lte: req.body.applicant.experience2},
       education: { $gte: req.body.applicant.education},
-      age: { $lte: req.body.applicant.age},
+      age: { $gte: req.body.applicant.age1, $lte: req.body.applicant.age2},
       expectedPay: { $lte: req.body.applicant.expectedPay},
     }, function(err, ShortListedApplicants){
       res.send(ShortListedApplicants)

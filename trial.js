@@ -32,3 +32,7 @@ else {
   })
 
 }
+<p><%if (applicant.education ==1) {%> Diploma <%}%></p>
+<p><%if (applicant.education ==2) {%> Bachelor<%}%></p>
+<p><%if (applicant.education ==3) {%> Master<%}%></p>
+<p><%if (applicant.education ==4) {%> Phd<%}%></p>
