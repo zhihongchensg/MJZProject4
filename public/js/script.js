@@ -50,20 +50,20 @@ $(document).ready(function ($) {
     document.location.href = '/profile'
   }))
 
-  $('#saveUserDetails').click(function(e) {
-      e.preventDefault();
-      alert('am here at edit ajax')
-      var formdata = $('.editUserDetails').serializeArray()
-
-      console.log(formdata);
-      $.ajax({
-        method: 'put',
-        url: '/recruiterProfile',
-        data: formdata
-      }).done(function(data) {
-        window.location = '/profile'
-      });
-  })
+  // $('#saveUserDetails').click(function(e) {
+  //     e.preventDefault();
+  //     alert('am here at edit ajax')
+  //     var formdata = $('.editUserDetails').serializeArray()
+  //
+  //     console.log(formdata);
+  //     $.ajax({
+  //       method: 'put',
+  //       url: '/recruiterProfile',
+  //       data: formdata
+  //     }).done(function(data) {
+  //       window.location = '/profile'
+  //     });
+  // })
 
 
 

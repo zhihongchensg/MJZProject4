@@ -28,7 +28,7 @@
          <%= job.description %>
        </td>
 
-       <td><%= job.postDate %></td>
+       <td><%= job.postDate.toDateString() %></td>
        <td><%= job.filled %></td>
          <td> <a href='/applicants/applicationForms/<%= job.id%>'><input type ="submit" action = "/applicants/applicationForms/<%= job.id%>" value = "Apply" id="viewapplicants" class="btn btn-primary navigation"></a> </td>
      </tr>

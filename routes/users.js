@@ -77,7 +77,8 @@ router.get('/profile', isLoggedIn, function (req, res) {
         joblists: joblists,
         message1: req.flash('failureMessage'),
         message2: req.flash('successMessage'),
-        message3: req.flash('deleteMessage')
+        message3: req.flash('editedUserMessage'),
+        message4: req.flash('deletedMessage')
       })
     })
   })
@@ -135,6 +136,7 @@ router.delete('/joblists/:id/', function (req, res) {
       console.log(err)
       res.render('joblists/showJobDescript')
     } else {
+      req.flash('deletedMessage', "You have deleted this joblist!")
       res.redirect('/profile')
     }
   })
@@ -213,7 +215,7 @@ router.put('/users/:id/edit', isLoggedIn, function (req, res) {
       res.render('users/recruiterProfile')
     }
     else {
-        req.flash('deleteMessage', "Joblist deleted!")
+        req.flash('editedUserMessage', "User edited!")
         res.redirect('/profile')
 
     }
