@@ -30,11 +30,13 @@ $(document).ready(function ($) {
        // eg. data (based on joblist.applicants) is an array now.
        // eg. data[0].name = mary
        var $applicantList = $('tbody')
-       console.log($applicantList)
        $applicantList.html("")
 
-       if (data[0].score) {
-          $('thead tr').append('<td><b>RATING</td>')
+       $('thead').html("")
+       $('thead').append('<tr><th>APPLICANT</th><th>BIO</th> </tr>')
+
+       if (data.length>0 && data[0].hasOwnProperty('score')) {
+          $('thead tr').append('<th>RATING</th>')
           data.forEach(function(shortListedApplicant){
             console.log(shortListedApplicant)
             $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td> <td>' + shortListedApplicant.score + '</td></tr>')
