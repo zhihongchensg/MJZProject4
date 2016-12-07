@@ -37,6 +37,10 @@ router.get('/', function (req, res) {
     })
   })
 })
+// added a home page
+router.get('/homepage', function (req, res) {
+  res.render('applicants/homepage')
+})
 
 // login routes
 // GET /login: Make sure user is not logged in 1st
@@ -118,7 +122,8 @@ router.put('/recruiterProfile', isLoggedIn, function (req, res) {
 
 router.get('/joblists/:id', function(req, res) {
   Joblist.findById (req.params.id, function (err, joblist) {
-    console.log(joblist)
+    console.log(joblist.user_id)
+    console.log()
     res.render('joblists/showJobDescript', {joblist : joblist}
   )})
 })

@@ -24,13 +24,13 @@
      <% joblist.forEach(function(job) { %>
      <tr>
        <td>
-         <a href="# %>"> <%= job.title %>  </a><br>
+         <a href="/joblists/<%=job.id%>"> <%= job.title %>  </a><br>
          <%= job.description %>
        </td>
 
        <td><%= job.postDate %></td>
        <td><%= job.filled %></td>
-       <td> <a href='/applicants/applicationForms/<%= job.id%>'><input type ="submit" action = "/applicants/applicationForms/<%= job.id%>" value = "Apply" id="viewapplicants" class="btn btn-primary navigation"></a> </td>
+         <td> <a href='/applicants/applicationForms/<%= job.id%>'><input type ="submit" action = "/applicants/applicationForms/<%= job.id%>" value = "Apply" id="viewapplicants" class="btn btn-primary navigation"></a> </td>
      </tr>
      <% }) %>
    </tbody>
