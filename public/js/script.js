@@ -5,18 +5,21 @@ $(document).ready(function ($) {
      e.preventDefault()
      alert('Button filters submitted')
      var formdata = $(this).serializeArray()
-     var experience = $('#experience').val()
-     var education = $('#education').val()
-     var age = $('#age').val()
-     var expectedPay = $('#expectedPay').val()
-     var skills = $('#skills').val()
+     var experience1 = $('#experience1').val()
+     var experience2 = $('#experience2').val()
+    //  var education = $('#education').val()
+    //  var age = $('#age').val()
+    //  var expectedPay = $('#expectedPay').val()
+    //  var skills = $('#skills').val()
      var mata = $(this).data("job-id")
-     console.log(mata)
-     console.log(experience)
-     console.log(education)
-     console.log(age)
-     console.log(expectedPay)
-     console.log(skills)
+    //  console.log(mata)
+     console.log(experience1)
+     console.log(experience2)
+    //  console.log(education)
+    //  console.log(age)
+    //  console.log(expectedPay)
+    //  console.log(skills)
+
      // var parameters = {experience: experience}
      $.ajax({
        type: 'PUT',
@@ -32,7 +35,7 @@ $(document).ready(function ($) {
        console.log($applicantList)
        $applicantList.html("")
         $('thead tr').append('<td><b>RATING</td>')
-        
+
        data.forEach(function(shortListedApplicant){
          console.log(shortListedApplicant)
          $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td> <td>' + shortListedApplicant.score + '</td></tr>')
