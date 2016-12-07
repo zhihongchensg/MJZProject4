@@ -125,7 +125,7 @@ router.get('/joblists/:id', function(req, res) {
     console.log(joblist.user_id)
     console.log()
     res.render('joblists/showJobDescript', {joblist : joblist}
-  )})
+  )}).sort(-Joblist.postDate)
 })
 
 // The logged in user can delete his own reviews only!
@@ -137,7 +137,7 @@ router.delete('/joblists/:id/', function (req, res) {
     } else {
       res.redirect('/profile')
     }
-  })
+  }).sort(-Joblist.postDate)
 })
 
 
@@ -172,7 +172,7 @@ router.get('/joblists/:id/edit', isLoggedIn, function (req, res) {
       req.flash('failureMessage', "You can't edit this joblist!")
       res.redirect ('/profile')
     }
-  })
+  }).sort(-Joblist.postDate)
 })
 
 router.post('/joblists/:id/edit', isLoggedIn, function (req, res) {
@@ -186,15 +186,14 @@ router.post('/joblists/:id/edit', isLoggedIn, function (req, res) {
       joblist.save (function (err, joblist) {
         res.redirect('/joblists/' + req.params.id)
       })
-
     }
-  })
+  }).sort(-Joblist.postDate)
 })
 
 // From a joblist, go to its applicants list
 
 router.get('/:id/applicants', function(req,res){
-	Joblist.findById(req.params.id).populate('applicants').exec(function(err,joblist){
+	Joblist.findById(req.params.id).populate('applicants').sort(-Joblist.postDate).exec(function(err,joblist){
 			res.render("users/applicants", {joblist:joblist});
 	});
 });

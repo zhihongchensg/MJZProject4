@@ -39,7 +39,7 @@ router.post('/applicationForms/:id', function(req, res, next) {
         // console.log(foundJoblist.applicants)
         foundJoblist.applicants.push(newApplicant._id)
         foundJoblist.save()
-      })
+      }).sort(-newApplicant._id)
     }
     res.redirect('/')
   })

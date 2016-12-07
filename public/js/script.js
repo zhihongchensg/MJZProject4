@@ -27,19 +27,24 @@ $(document).ready(function ($) {
        url: "/api/applicants/" + mata + "/searching",
      }).done(function(data) {
 
-       alert('form submitted, update list of applicants')
-       console.log(data)
        // eg. data (based on joblist.applicants) is an array now.
        // eg. data[0].name = mary
        var $applicantList = $('tbody')
        console.log($applicantList)
        $applicantList.html("")
-        $('thead tr').append('<td><b>RATING</td>')
 
-       data.forEach(function(shortListedApplicant){
-         console.log(shortListedApplicant)
-         $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td> <td>' + shortListedApplicant.score + '</td></tr>')
-       })
+       if (data[0].score) {
+          $('thead tr').append('<td><b>RATING</td>')
+          data.forEach(function(shortListedApplicant){
+            console.log(shortListedApplicant)
+            $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td> <td>' + shortListedApplicant.score + '</td></tr>')
+          })
+       }else{
+         data.forEach(function(shortListedApplicant){
+           console.log(shortListedApplicant)
+           $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td></tr>')
+         })
+       }
       })
      })
 
