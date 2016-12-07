@@ -3,17 +3,31 @@
 .floatRight {
   width: 30%; float: right;
 }
+#map {
+  /*height: 100px;
+  width: 50%;*/
+ }
 
 .container {
   overflow: hidden;
   border-radius: 5px;
-  padding: 20px 10px 50px 10px;
+  padding: 20px 10px 20px 10px;
+  margin-bottom: 15px;
   /*background-color: #d2d2d2;*/
   background-color: #e7e7e7;
 }
-.col-md-4{
+.col-md-4 {
   background-color: white;
   border-color: black;
+  margin-bottom: 10px;
+}
+
+.col-md-10 {
+  background-color: white;
+  border-color: black;
+  padding-top: 10px;
+  width: 100%;
+  margin-top: 10px;
 }
 .navbar {
   margin-left: 15px;
@@ -40,7 +54,9 @@ body{
   /*background-size:contain;*/
 
 }
-
+.form-group{
+  margin: 5px 5px 5px 5px;
+}
 
 .footer{
    position:fixed;
