@@ -42,7 +42,7 @@ router.post('/applicationForms/:id', function(req, res, next) {
       })
     }
     req.flash('successMessage', "You successfully applied!")
-    res.redirect('/')
+    res.redirect('/applicants')
   })
 })
 
