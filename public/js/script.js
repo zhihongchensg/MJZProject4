@@ -3,7 +3,7 @@ $(document).ready(function ($) {
 
   $('.filters').on('submit', function(e){
      e.preventDefault()
-     alert('Button filters submitted')
+    //  alert('Button filters submitted')
      var formdata = $(this).serializeArray()
      var experience1 = $('#experience1').val()
      var experience2 = $('#experience2').val()
@@ -13,8 +13,8 @@ $(document).ready(function ($) {
     //  var skills = $('#skills').val()
      var mata = $(this).data("job-id")
     //  console.log(mata)
-     console.log(experience1)
-     console.log(experience2)
+    //  console.log(experience1)
+    //  console.log(experience2)
     //  console.log(education)
     //  console.log(age)
     //  console.log(expectedPay)
@@ -43,7 +43,7 @@ $(document).ready(function ($) {
           })
        }else{
          data.forEach(function(shortListedApplicant){
-           console.log(shortListedApplicant)
+          //  console.log(shortListedApplicant)
            $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td></tr>')
          })
        }
@@ -53,7 +53,7 @@ $(document).ready(function ($) {
 
   $('#cancelSaveUserDetails').on('click', (function(e){
     e.preventDefault()
-    alert('here liao')
+    // alert('here liao')
     document.location.href = '/profile'
   }))
 
@@ -76,15 +76,15 @@ $(document).ready(function ($) {
 
   $('.closed').on('click', (function(e){
     e.preventDefault()
-    alert('Button closed clicked')
-    console.log($(this).data("job-id"));
+    // alert('Button closed clicked')
+    // console.log($(this).data("job-id"));
     var data = $(this).data("job-id");
     $.ajax({
                 type: 'PUT',
                 data: data,
         url: "/api/joblists/" + data + "/edit",
         success: function(data) {
-          console.log(data)
+          // console.log(data)
 
           // ITEM APPENDED TO EXPIRED JOB LIST
           var newExpiredJob = document.createElement('tr')
@@ -106,10 +106,10 @@ $(document).ready(function ($) {
           newExpiredJob.appendChild(newExpiredJobFilled)
           newExpiredJob.appendChild(newExpiredJobViewApplicants)
 
-          console.log(newExpiredJob)
+          // console.log(newExpiredJob)
           var ExpiredJobList = document.querySelectorAll('tbody')[1]
           ExpiredJobList.appendChild(newExpiredJob)
-          console.log(ExpiredJobList)
+          // console.log(ExpiredJobList)
 
           // ITEM REMOVED FROM UNEXPIRED joblist
           var CurrentJoblist = document.querySelectorAll('tbody')[0]
