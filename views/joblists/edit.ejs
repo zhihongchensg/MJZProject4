@@ -1,18 +1,21 @@
-<div class="text-center">
-<h2>Edit your joblist here!</h2>
 <form action="/joblists/<%= joblist.id %>/edit" method="POST">
-  <div class="form-group" class="text-center">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="items" name = "joblist[title]" placeholder="Title" value = "<%=joblist.title%>">
-  </div>
-  <div class="form-group">
-    <label for="exampleTextarea">Description</label>
-    <textarea class="form-control" id="exampleTextarea" rows="3" name = "joblist[description]" ><%=joblist.description%></textarea>
-  </div>
-  <div>
-      <input type="submit" value="Save">
+<div class="container">
+<%# <div class="text-center">%>
+<h2>Edit your joblist here!</h2>
+    <div class="form-group" >
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="items" name = "joblist[title]" placeholder="Title" value = "<%=joblist.title%>">
+    </div>
+    <div class="form-group">
+      <label for="exampleTextarea">Description</label>
+      <textarea class="form-control" id="exampleTextarea" rows="3" name = "joblist[description]" ><%=joblist.description%></textarea>
+    </div>
+    <div>
+      <input type="submit" class="btn btn-primary" value="Save">
+      <INPUT Type="button" class="btn btn-primary" VALUE="Back" onClick="javascript:location.href = '/profile';">
+
+    </div>
 
   </div>
-  <a href="/joblists/<%=joblist.id%>">Cancel and go back</a>
 </form>
-</div>
+<%# </div>%>

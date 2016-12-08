@@ -31,28 +31,28 @@
   <% } %>
 
 <div class = "container">
-  <h1>Jobs Created by <%=user.local.name%></h1>
+  <h2>Jobs Created by <%=user.local.name%></h2>
 <%# <div class="floatLeft">%>
  <table class="table table-hover">
-   <h2> Current Job Postings</h2>
+   <h3> Current Job Postings</h3>
    <thead>
      <tr>
        <th>TITLE</th>
        <th>POST DATE</th>
-       <th>FILLED</th>
+       <%# <th>FILLED</th>%>
      </tr>
    </thead>
    <tbody>
      <% joblists.forEach(function(joblist) { if (joblist.filled == false) {%>
      <tr class= "<%=joblist._id%>">
-       <td>
+       <td width="700px">
          <a href="/joblists/<%= joblist._id%>" > <%= joblist.title %></a><br>
          <%= joblist.description.slice(0,150) %>
        </td>
-       <td><%= joblist.postDate.toDateString() %></td>
-       <td><%= joblist.filled %></td>
-       <td> <input type ="submit" value = "Position Filled" data-job-id="<%=joblist._id%>" class="btn btn-primary navigation closed"> </td>
-       <td> <input type ="submit" value = "View Applicants" onclick=location.href="/<%= joblist._id%>/applicants"  class="btn btn-info navigation" See Applicants </td>
+       <td width="180px"><%= joblist.postDate.toDateString() %></td>
+
+       <td width="100px"> <input type ="submit" value = "Position Filled" data-job-id="<%=joblist._id%>" class="btn btn-primary navigation closed"> </td>
+       <td width="100px"> <input type ="submit" value = "View Applicants" onclick=location.href="/<%= joblist._id%>/applicants"  class="btn btn-info navigation" See Applicants </td>
      </tr>
      <% }}) %>
    </tbody>
@@ -66,7 +66,7 @@
       <tr>
         <th>TITLE</th>
         <th>POST DATE</th>
-        <th>FILLED</th>
+        <%# <th>FILLED</th>%>
       </tr>
     </thead>
     <tbody>
@@ -76,8 +76,8 @@
          <a href="/joblists/<%= joblist._id%>" > <%= joblist.title %>
         </td>
         <td><%= joblist.postDate.toDateString()%></td>
-        <td><%= joblist.filled %></td>
-        <td> <a href="/<%= joblist._id%>/applicants">See Past Applicants</a></td>
+
+        <td> <a href="/<%= joblist._id%>/applicants" class="btn btn-info navigation">See Past Applicants</a></td>
       </tr>
       <% }}) %>
     </tbody>

@@ -47,16 +47,16 @@
     </div>
   </div>
   <div class="form-group" class="text-center">
-    <label for="expectedPay">Expected Pay</label>
+    <label for="expectedPay">Expected Pay (SGD)</label>
     <input type="number" min="0" class="form-control" id="applicant-pay" name="applicant[expectedPay]" placeholder="1000" required>
   </div>
   <div class="form-group" class="text-center">
     <label for="experience">Skills</label>
-    <input type="text" min="0" name="applicant[skills]" placeholder="" required>
+    <input type="text" min="0" class="form-control" name="applicant[skills]" placeholder="" required>
   </div>
   <div class="form-group" class="text-center">
-    <label for="exampleTextarea">Bio (not more than 250 characters)</label>
-    <textarea class="form-control" id="exampleTextarea" rows="3" name = "applicant[bioText]" maxlength="250" required></textarea>
+    <label for="exampleTextarea">Bio (not more than 1000 characters)</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3" name = "applicant[bioText]" maxlength="1000" required></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Apply</button>
 </form>

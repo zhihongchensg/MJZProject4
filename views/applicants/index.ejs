@@ -21,21 +21,21 @@
        <th>TITLE</th>
        <%# <th>EXPIRED</th>%>
        <th>POST DATE</th>
-       <th>FILLED</th>
+       <%# <th>FILLED</th>%>
      </tr>
    </thead>
    <tbody>
      <% joblist.reverse()%>
      <% joblist.forEach(function(job) { %>
      <tr>
-       <td>
+       <td width=" 700px">
          <a href="/joblists/<%=job.id%>"> <%= job.title %>  </a><br>
-         <%= job.description %>
+         <%= job.description.slice(0,200) %>
        </td>
 
-       <td><%= job.postDate.toDateString() %></td>
-       <td><%= job.filled %></td>
-         <td> <a href='/applicants/applicationForms/<%= job.id%>'><input type ="submit" value = "Apply" id="viewapplicants" class="btn btn-primary navigation"></a> </td>
+       <td width="180px"><%= job.postDate.toDateString() %></td>
+
+         <td width="100px"> <a href='/applicants/applicationForms/<%= job.id%>'><input type ="submit" value = "Apply" id="viewapplicants" class="btn btn-primary navigation"></a> </td>
      </tr>
      <% }) %>
    </tbody>
