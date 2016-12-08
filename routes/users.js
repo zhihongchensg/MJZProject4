@@ -56,12 +56,12 @@ router.post('/login', passport.authenticate('local-login', {
 }))
 
 // signup routes
-router.get('/signup', isNotLoggedIn, userController.getSignup)
+router.get('/melvin', isNotLoggedIn, userController.getSignup)
 
 // process the signup form
-router.post('/signup', passport.authenticate('local-signup', {
+router.post('/melvin', passport.authenticate('local-signup', {
   successRedirect: '/profile', // redirect to the secure profile section
-  failureRedirect: '/signup', // redirect back to the signup page if there is an error
+  failureRedirect: '/melvin', // redirect back to the signup page if there is an error
   failureFlash: true // allow flash messages
 }))
 
