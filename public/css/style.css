@@ -95,3 +95,7 @@ body{
 form {
   display: block;
 }
+
+#skills{
+  width: 97%;
+}
