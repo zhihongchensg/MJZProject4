@@ -92,7 +92,7 @@ $(document).ready(function ($) {
           // notice that element for job.description and expired was not created.
           var newExpiredJobTitle = document.createElement('td')
           var newExpiredJobpostDate = document.createElement('td')
-          var newExpiredJobFilled = document.createElement('td')
+          // var newExpiredJobFilled = document.createElement('td')
           var newExpiredJobViewApplicants = document.createElement('td')
           var link = document.createElement('a')
           link.href= data._id + "/applicants"
@@ -100,10 +100,10 @@ $(document).ready(function ($) {
           newExpiredJobViewApplicants.appendChild(link)
           newExpiredJobTitle.innerText = data.title
           newExpiredJobpostDate.innerText = data.postDate
-          newExpiredJobFilled.innerText = "true"
+          // newExpiredJobFilled.innerText = "true"
           newExpiredJob.appendChild(newExpiredJobTitle)
           newExpiredJob.appendChild(newExpiredJobpostDate)
-          newExpiredJob.appendChild(newExpiredJobFilled)
+          // newExpiredJob.appendChild(newExpiredJobFilled)
           newExpiredJob.appendChild(newExpiredJobViewApplicants)
 
           // console.log(newExpiredJob)
