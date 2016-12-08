@@ -1,6 +1,8 @@
+
 <div class="container">
   <h2> <%=joblist.title%>  </h2>
-  <h3> <%=joblist.description%> </h3>
+  <h3><pre><%=joblist.description%> </pre></h3>
+
 
   <% if (user) {
     if (user.id == joblist.user_id) {%>
