@@ -39,7 +39,7 @@ $(document).ready(function ($) {
           $('thead tr').append('<th>RATING</th>')
           data.forEach(function(shortListedApplicant){
             console.log(shortListedApplicant)
-            $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td> <td>' + shortListedApplicant.score + '</td></tr>')
+            $('tbody').append('<tr><td><a href=/applicants/'+ shortListedApplicant._id+'>' + shortListedApplicant.name + '</a><br>' + shortListedApplicant.contact + '<br>' + shortListedApplicant.email + '</td><td>' + shortListedApplicant.bioText + '</td> <td>' + shortListedApplicant.score.toFixed(2) + '</td></tr>')
           })
        }else{
          data.forEach(function(shortListedApplicant){
@@ -92,7 +92,7 @@ $(document).ready(function ($) {
           // notice that element for job.description and expired was not created.
           var newExpiredJobTitle = document.createElement('td')
           var newExpiredJobpostDate = document.createElement('td')
-          // var newExpiredJobFilled = document.createElement('td')
+          var newExpiredJobFilled = document.createElement('td')
           var newExpiredJobViewApplicants = document.createElement('td')
           var link = document.createElement('a')
           link.href= data._id + "/applicants"
@@ -100,7 +100,7 @@ $(document).ready(function ($) {
           newExpiredJobViewApplicants.appendChild(link)
           newExpiredJobTitle.innerText = data.title
           newExpiredJobpostDate.innerText = data.postDate
-          // newExpiredJobFilled.innerText = "true"
+          newExpiredJobFilled.innerText = "true"
           newExpiredJob.appendChild(newExpiredJobTitle)
           newExpiredJob.appendChild(newExpiredJobpostDate)
           // newExpiredJob.appendChild(newExpiredJobFilled)
