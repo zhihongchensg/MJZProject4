@@ -1,12 +1,10 @@
 <h2> <%=joblist.title%>  </h2>
 <p> <pre><%=joblist.description%> </pre></p>
 
-
 <% if (user) {
   if (user.id == joblist.user_id) {%>
 
 <!--<a href="/joblists/<%= joblist.id%>/edit">Edit</a>-->
-
 
 <form action="/joblists/<%= joblist.id%>?_method=DELETE" method="POST">
   <INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;">

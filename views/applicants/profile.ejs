@@ -34,10 +34,10 @@
   <%# <div class="form-group" class="text-center">%>
     <div class="col-md-4">
       <label for="education">Education</label>
-      <p><%if (applicant.education ==1) {%> Diploma <%}%></p>
-      <p><%if (applicant.education ==2) {%> Bachelor<%}%></p>
-      <p><%if (applicant.education ==3) {%> Master<%}%></p>
-      <p><%if (applicant.education ==4) {%> Phd<%}%></p>
+      <p><%if (applicant.education ==1) {%> Diploma <%}%>
+      <%if (applicant.education ==2) {%> Bachelor<%}%>
+      <%if (applicant.education ==3) {%> Master<%}%>
+      <%if (applicant.education ==4) {%> Phd<%}%></p>
     </div>
   <%# </div>%>
 
@@ -76,5 +76,6 @@
     </div>
   <%# </div>%>
 
+<INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;">
 
 </div>

@@ -8,6 +8,7 @@
   width: 50%;*/
  }
 
+
 .container {
   overflow: hidden;
   border-radius: 5px;
@@ -22,12 +23,16 @@
   margin-bottom: 10px;
 }
 
+.homecol{
+  height: 440px;
+}
 .col-md-10 {
   background-color: white;
   border-color: black;
   padding-top: 10px;
   width: 100%;
   margin-top: 10px;
+  margin-bottom: 5px;
 }
 .navbar {
   margin-left: 15px;
